@@ -1,13 +1,3 @@
-/sessions/rcw-01bczv37werfmbarsxy5nswg/mnt/Groupon/v2/03_validate.py:84: FutureWarning: The default of observed=False is deprecated and will be changed to True in a future version of pandas. Pass observed=False to retain current behavior or observed=True to adopt the future default and silence this warning.
-  sub = hb.groupby(pd.cut(hb.results_shown,[3,9,15,20,25])).agg(n=('query_id','size'),cvr=('purchased','mean'))
-/sessions/rcw-01bczv37werfmbarsxy5nswg/.local/lib/python3.10/site-packages/statsmodels/discrete/discrete_model.py:268: ConvergenceWarning: Maximum Likelihood optimization failed to converge. Check mle_retvals
-  mlefit = super().fit(
-/sessions/rcw-01bczv37werfmbarsxy5nswg/.local/lib/python3.10/site-packages/statsmodels/discrete/discrete_model.py:268: ConvergenceWarning: Maximum Likelihood optimization failed to converge. Check mle_retvals
-  mlefit = super().fit(
-/sessions/rcw-01bczv37werfmbarsxy5nswg/.local/lib/python3.10/site-packages/statsmodels/discrete/discrete_model.py:268: ConvergenceWarning: Maximum Likelihood optimization failed to converge. Check mle_retvals
-  mlefit = super().fit(
-/sessions/rcw-01bczv37werfmbarsxy5nswg/.local/lib/python3.10/site-packages/statsmodels/discrete/discrete_model.py:268: ConvergenceWarning: Maximum Likelihood optimization failed to converge. Check mle_retvals
-  mlefit = super().fit(
 
 ==============================================================================
 1. INTEGRITY
@@ -164,9 +154,9 @@ PL    15.2
 ==============================================================================
 distinct canonical queries: 128 | typo rows: 590
 
-Likelihood-ratio test, market on top of query identity: chi2=24.24 df=4 p=7.159e-05
+Likelihood-ratio test, market on top of query identity: chi2=24.37 df=4 p=6.727e-05
   -> low p means market still matters once you compare like with like
-same test, high-ticket removed:  chi2=24.24 df=4 p=7.159e-05
+same test, high-ticket removed:  chi2=24.33 df=4 p=6.873e-05
 
 queries searched >=20 times in ALL five markets: 5
 market       DE    ES    FR    GB    PL
@@ -267,7 +257,7 @@ PL       249  17.3  37.8  24.5   6.8
 ==============================================================================
 5d. Does the market effect survive city, and is GB special or is ENGLISH special?
 ==============================================================================
-LR market | query, neutral queries only: chi2=20.63 df=4 p=0.0003743
+LR market | query, neutral queries only: chi2=20.63 df=4 p=0.0003744
 LR city   | query, neutral queries only: chi2=32.37 df=19 p=0.0284
 
 ==============================================================================
@@ -318,12 +308,6 @@ native-language searches : n=6347 zero=32.9% <=2 =53.0% ctr=26.6% cvr=8.10% purc
 ==============================================================================
 5g. CROSS-LANGUAGE, rebuilt at the right grain with MY OWN translation pairs
 ==============================================================================
-/sessions/rcw-01bczv37werfmbarsxy5nswg/.local/lib/python3.10/site-packages/statsmodels/discrete/discrete_model.py:268: ConvergenceWarning: Maximum Likelihood optimization failed to converge. Check mle_retvals
-  mlefit = super().fit(
-/sessions/rcw-01bczv37werfmbarsxy5nswg/.local/lib/python3.10/site-packages/statsmodels/discrete/discrete_model.py:268: ConvergenceWarning: Maximum Likelihood optimization failed to converge. Check mle_retvals
-  mlefit = super().fit(
-/sessions/rcw-01bczv37werfmbarsxy5nswg/.local/lib/python3.10/site-packages/statsmodels/discrete/discrete_model.py:268: ConvergenceWarning: Maximum Likelihood optimization failed to converge. Check mle_retvals
-  mlefit = super().fit(
    market               intent  n_for  n_nat  fail_for  fail_nat  med_for  med_nat  buy_for  cvr_nat
 0      ES         thai massage      6     76     0.833     0.487      2.0      4.0        0    0.132
 1      FR         thai massage      8     63     0.750     0.349      2.0     10.0        0    0.127
@@ -391,8 +375,8 @@ local  : n=2819  <=2 results 39.5%  median 8  ctr 33.8%  purchases 293  cvr 10.3
 ==============================================================================
 5h. RESOLUTION — does the market effect disappear once language is accounted for?
 ==============================================================================
-language adds over query   : chi2= 14.03 df=1 p=0.0001801
-market adds over query+lang: chi2= 12.33 df=4 p=0.01503
+language adds over query   : chi2= 14.19 df=1 p=0.0001657
+market adds over query+lang: chi2= 12.32 df=4 p=0.01512
 
 -> if market p is now high, "Poland is worst" was the language effect wearing a flag
 
@@ -434,28 +418,22 @@ tinte pelo         62  40.3  17.7  17.7
 
 CTR among searches that returned something, paintball vs all: 45.5% vs 38.1%
 paintball deals in catalogue: 0
-/sessions/rcw-01bczv37werfmbarsxy5nswg/.local/lib/python3.10/site-packages/statsmodels/discrete/discrete_model.py:268: ConvergenceWarning: Maximum Likelihood optimization failed to converge. Check mle_retvals
-  mlefit = super().fit(
-/sessions/rcw-01bczv37werfmbarsxy5nswg/.local/lib/python3.10/site-packages/statsmodels/discrete/discrete_model.py:268: ConvergenceWarning: Maximum Likelihood optimization failed to converge. Check mle_retvals
-  mlefit = super().fit(
-/sessions/rcw-01bczv37werfmbarsxy5nswg/.local/lib/python3.10/site-packages/statsmodels/discrete/discrete_model.py:268: ConvergenceWarning: Maximum Likelihood optimization failed to converge. Check mle_retvals
-  mlefit = super().fit(
 
 ==============================================================================
 5i. So how big IS the residual market effect, and what is it?
 ==============================================================================
 logit coefficients, market (ref = DE), controlling for query identity and language:
   .ES OR=1.40  95% CI 1.00-1.96
-  .FR OR=1.43  95% CI 1.02-2.00
-  .GB OR=0.91  95% CI 0.67-1.24
+  .FR OR=1.42  95% CI 1.02-1.99
+  .GB OR=0.91  95% CI 0.67-1.25
   .PL OR=1.46  95% CI 0.98-2.18
 
 add city catalogue size as a control — is it inventory depth rather than nationality?
-  city size alone: OR per doubling = 0.96 p=0.4412
-  market on top of query+lang+city size: chi2=11.81 df=4 p=0.01884
+  city size alone: OR per doubling = 0.96 p=0.4393
+  market on top of query+lang+city size: chi2=11.86 df=4 p=0.01842
 
 GB vs rest, controlling for query + language:
-  GB OR = 0.73 p = 0.01195
+  GB OR = 0.73 p = 0.01176
   practical size: predicted zero-rate GB 27.3% vs non-GB 30.2%
 
 ==============================================================================

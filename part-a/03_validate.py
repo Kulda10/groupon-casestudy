@@ -179,16 +179,22 @@ S['is_typo'] = S.qcanon != S.raw_query
 print('distinct canonical queries:', S.qcanon.nunique(), '| typo rows:', int(S.is_typo.sum()))
 
 import statsmodels.formula.api as smf
+
+# Newton-Raphson cannot fit these: six high-ticket concepts return zero results every single
+# time, so their query dummies separate the outcome perfectly and the Hessian is singular.
+# Older numpy inverted it anyway; from numpy 2.x it raises. L-BFGS does not need the Hessian
+# inverse and reaches the same likelihood — the statistic moves in the third significant figure.
+LOGIT = dict(disp=0, method='lbfgs', maxiter=500)
 S['zero'] = (S.results_shown==0).astype(int)
-m = smf.logit('zero ~ C(market) + C(qcanon)', data=S).fit(disp=0)
-lr = smf.logit('zero ~ C(qcanon)', data=S).fit(disp=0)
+m = smf.logit('zero ~ C(market) + C(qcanon)', data=S).fit(**LOGIT)
+lr = smf.logit('zero ~ C(qcanon)', data=S).fit(**LOGIT)
 stat = 2*(m.llf - lr.llf); dfree = int(m.df_model - lr.df_model)
 print(f'\nLikelihood-ratio test, market on top of query identity: chi2={stat:.2f} df={dfree} '
       f'p={stats.chi2.sf(stat,dfree):.4g}')
 print('  -> low p means market still matters once you compare like with like')
 sub = S[~S.high_ticket]
-m2 = smf.logit('zero ~ C(market) + C(qcanon)', data=sub).fit(disp=0)
-l2m = smf.logit('zero ~ C(qcanon)', data=sub).fit(disp=0)
+m2 = smf.logit('zero ~ C(market) + C(qcanon)', data=sub).fit(**LOGIT)
+l2m = smf.logit('zero ~ C(qcanon)', data=sub).fit(**LOGIT)
 st2 = 2*(m2.llf-l2m.llf); df2 = int(m2.df_model-l2m.df_model)
 print(f'same test, high-ticket removed:  chi2={st2:.2f} df={df2} p={stats.chi2.sf(st2,df2):.4g}')
 
@@ -226,12 +232,12 @@ print(N.groupby('market').agg(n=('zero','size'), zero=('zero','mean'), thin=('re
       ctr=('clicked','mean'), cvr=('purchased','mean')).apply(lambda c: (c*100).round(1) if c.name!='n' else c).to_string())
 
 h('5d. Does the market effect survive city, and is GB special or is ENGLISH special?')
-m3 = smf.logit('zero ~ C(market) + C(qcanon)', data=N).fit(disp=0)
-l3 = smf.logit('zero ~ C(qcanon)', data=N).fit(disp=0)
+m3 = smf.logit('zero ~ C(market) + C(qcanon)', data=N).fit(**LOGIT)
+l3 = smf.logit('zero ~ C(qcanon)', data=N).fit(**LOGIT)
 st3 = 2*(m3.llf-l3.llf); d3=int(m3.df_model-l3.df_model)
 print(f'LR market | query, neutral queries only: chi2={st3:.2f} df={d3} p={stats.chi2.sf(st3,d3):.4g}')
 # and the reverse: is it city-level?
-m4 = smf.logit('zero ~ C(city) + C(qcanon)', data=N).fit(disp=0)
+m4 = smf.logit('zero ~ C(city) + C(qcanon)', data=N).fit(**LOGIT)
 st4 = 2*(m4.llf-l3.llf); d4=int(m4.df_model-l3.df_model)
 print(f'LR city   | query, neutral queries only: chi2={st4:.2f} df={d4} p={stats.chi2.sf(st4,d4):.4g}')
 
@@ -248,8 +254,8 @@ print('rows:', len(L))
 print(L.groupby('market').agg(n=('zero','size'), zero=('zero','mean'), ctr=('clicked','mean'),
       cvr=('purchased','mean')).apply(lambda c:(c*100).round(1) if c.name!='n' else c).to_string())
 print('chi2 market on loanwords only p =', f"{stats.chi2_contingency(pd.crosstab(L.market,L.zero))[1]:.4g}")
-ml = smf.logit('zero ~ C(market) + C(qcanon)', data=L).fit(disp=0)
-ll = smf.logit('zero ~ C(qcanon)', data=L).fit(disp=0)
+ml = smf.logit('zero ~ C(market) + C(qcanon)', data=L).fit(**LOGIT)
+ll = smf.logit('zero ~ C(qcanon)', data=L).fit(**LOGIT)
 stl = 2*(ml.llf-ll.llf); dl=int(ml.df_model-ll.df_model)
 print(f'LR market | query, loanwords only: chi2={stl:.2f} df={dl} p={stats.chi2.sf(stl,dl):.4g}')
 print('  -> HIGH p here means: no market is worse. The apparent market effect was language.')
@@ -339,9 +345,9 @@ print('2x2 chi2 p =', f"{stats.chi2_contingency(ct)[1]:.3g}", '| odds ratio =',
 h('5h. RESOLUTION — does the market effect disappear once language is accounted for?')
 foreign_keys = {(r.market, norm(r.intent)) for r in X.itertuples()}
 S['is_foreign'] = [ (m,q) in foreign_keys for m,q in zip(S.market, S.qn)]
-base = smf.logit('zero ~ C(qcanon)', data=S).fit(disp=0)
-withlang = smf.logit('zero ~ C(qcanon) + is_foreign', data=S).fit(disp=0)
-full = smf.logit('zero ~ C(qcanon) + is_foreign + C(market)', data=S).fit(disp=0)
+base = smf.logit('zero ~ C(qcanon)', data=S).fit(**LOGIT)
+withlang = smf.logit('zero ~ C(qcanon) + is_foreign', data=S).fit(**LOGIT)
+full = smf.logit('zero ~ C(qcanon) + is_foreign + C(market)', data=S).fit(**LOGIT)
 for nm,a,b in [('language adds over query   ', base, withlang), ('market adds over query+lang', withlang, full)]:
     st = 2*(b.llf-a.llf); df_=int(b.df_model-a.df_model)
     print(f'{nm}: chi2={st:6.2f} df={df_} p={stats.chi2.sf(st,df_):.4g}')
@@ -382,14 +388,14 @@ for k in co.index:
     print(f'  {k[-4:-1]:3s} OR={np.exp(co[k]):.2f}  95% CI {np.exp(co[k]-1.96*se[k]):.2f}-{np.exp(co[k]+1.96*se[k]):.2f}')
 print('\nadd city catalogue size as a control — is it inventory depth rather than nationality?')
 S['logdeals'] = np.log(S.city_deals)
-f2 = smf.logit('zero ~ C(qcanon) + is_foreign + logdeals', data=S).fit(disp=0)
-f3 = smf.logit('zero ~ C(qcanon) + is_foreign + logdeals + C(market)', data=S).fit(disp=0)
+f2 = smf.logit('zero ~ C(qcanon) + is_foreign + logdeals', data=S).fit(**LOGIT)
+f3 = smf.logit('zero ~ C(qcanon) + is_foreign + logdeals + C(market)', data=S).fit(**LOGIT)
 st=2*(f3.llf-f2.llf); df_=int(f3.df_model-f2.df_model)
 print(f'  city size alone: OR per doubling = {np.exp(f2.params["logdeals"]*np.log(2)):.2f} p={f2.pvalues["logdeals"]:.4g}')
 print(f'  market on top of query+lang+city size: chi2={st:.2f} df={df_} p={stats.chi2.sf(st,df_):.4g}')
 print('\nGB vs rest, controlling for query + language:')
 S['gb'] = (S.market=='GB').astype(int)
-g1 = smf.logit('zero ~ C(qcanon) + is_foreign + gb', data=S).fit(disp=0)
+g1 = smf.logit('zero ~ C(qcanon) + is_foreign + gb', data=S).fit(**LOGIT)
 print(f'  GB OR = {np.exp(g1.params["gb"]):.2f} p = {g1.pvalues["gb"]:.4g}')
 print('  practical size: predicted zero-rate GB %.1f%% vs non-GB %.1f%%' % (
     S.assign(gb=1).pipe(lambda d: g1.predict(d)).mean()*100,

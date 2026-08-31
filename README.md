@@ -13,8 +13,11 @@ Nothing here is quoted from memory. Every figure on the page is produced by the 
 
 ## Run Part A
 
-Two CSVs, three scripts, in order. **Requirements: Python 3 and pandas, numpy, scipy, statsmodels.**
-No API key — there isn't one to include.
+Two CSVs, three scripts, in order. No API key — there isn't one to include.
+
+```bash
+python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
+```
 
 ```bash
 python3 part-a/01_explore.py      # profile, integrity checks, what the files cannot tell us
@@ -23,8 +26,9 @@ python3 part-a/03_validate.py     # an independent rewrite that tries to break t
 ```
 
 The scripts find the CSVs whether you run them from the repo root or from `part-a/`. Each one's
-output is committed beside it (`*_output.txt`), so you can diff your run against mine without
-running anything.
+output is committed beside it (`*_output.txt`), and **all three reproduce theirs byte for byte** —
+so you can diff your run against mine, or read mine without running anything. `03_validate.py`
+takes a couple of minutes; the other two are seconds.
 
 `03_validate.py` is not a refactor of `02_findings.py` — it was written from scratch, deliberately,
 to break the first pass. It broke four of nineteen claims. Those four, and what was wrong with them,
