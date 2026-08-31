@@ -1,0 +1,569 @@
+deal_id,market,city,title,category_l1,category_l2,price_usd,rating,num_ratings,is_bookable
+D00001,GB,London,Spa & Massage Treatment,Beauty & Wellness,massage,176.17,4.2,336,True
+D00002,GB,London,Relaxing Wellness Session,Beauty & Wellness,massage,65.19,4.9,54,False
+D00003,GB,London,Full Body Massage Package,Beauty & Wellness,massage,24.2,4.2,367,True
+D00004,GB,London,Full Body Massage Package,Beauty & Wellness,massage,57.79,3.5,552,False
+D00005,GB,London,Full Body Massage Package,Beauty & Wellness,massage,120.2,5.0,569,False
+D00006,GB,London,Relaxing Wellness Session,Beauty & Wellness,massage,94.08,4.4,417,False
+D00007,GB,London,Spa & Massage Treatment,Beauty & Wellness,massage,57.25,4.4,108,True
+D00008,GB,London,Full Body Massage Package,Beauty & Wellness,massage,37.26,3.9,390,True
+D00009,GB,London,Spa & Massage Treatment,Beauty & Wellness,massage,73.0,4.0,136,True
+D00010,GB,London,Full Body Massage Package,Beauty & Wellness,massage,113.91,4.9,202,True
+D00011,GB,London,Full Body Massage Package,Beauty & Wellness,massage,158.29,4.6,81,True
+D00012,GB,London,Spa & Massage Treatment,Beauty & Wellness,massage,155.77,3.2,130,True
+D00013,GB,London,Dinner & Wine Experience,Food & Drink,dining,58.49,4.6,467,True
+D00014,GB,London,Three-Course Meal for Two,Food & Drink,dining,101.75,3.7,211,True
+D00015,GB,London,Tasting Menu for Two,Food & Drink,dining,91.84,3.9,102,True
+D00016,GB,London,Tasting Menu for Two,Food & Drink,dining,143.77,4.4,451,False
+D00017,GB,London,Tasting Menu for Two,Food & Drink,dining,63.91,3.4,169,False
+D00018,GB,London,Three-Course Meal for Two,Food & Drink,dining,68.39,3.6,492,False
+D00019,GB,London,Tasting Menu for Two,Food & Drink,dining,157.77,3.9,354,True
+D00020,GB,London,Three-Course Meal for Two,Food & Drink,dining,19.39,4.4,87,True
+D00021,GB,London,Tasting Menu for Two,Food & Drink,dining,164.79,4.7,148,True
+D00022,GB,London,Tasting Menu for Two,Food & Drink,dining,131.31,3.9,279,True
+D00023,GB,London,Tasting Menu for Two,Food & Drink,dining,163.03,4.6,170,True
+D00024,GB,London,Three-Course Meal for Two,Food & Drink,dining,94.42,4.1,105,False
+D00025,GB,London,Three-Course Meal for Two,Food & Drink,dining,17.02,4.4,271,True
+D00026,GB,London,Guided City Tour,Things To Do,activities,154.83,4.0,243,True
+D00027,GB,London,Go-Karting Session,Things To Do,activities,59.72,4.0,71,True
+D00028,GB,London,Go-Karting Session,Things To Do,activities,133.73,4.0,218,True
+D00029,GB,London,Guided City Tour,Things To Do,activities,17.29,4.4,39,True
+D00030,GB,London,Guided City Tour,Things To Do,activities,173.62,4.4,228,False
+D00031,GB,London,Go-Karting Session,Things To Do,activities,148.97,4.1,76,False
+D00032,GB,London,Guided City Tour,Things To Do,activities,34.58,4.2,326,True
+D00033,GB,London,Escape Room Experience,Things To Do,activities,67.55,3.8,180,True
+D00034,GB,London,Escape Room Experience,Things To Do,activities,18.77,3.9,78,True
+D00035,GB,London,Guided City Tour,Things To Do,activities,22.42,4.7,435,True
+D00036,GB,London,Escape Room Experience,Things To Do,activities,43.55,4.4,130,True
+D00037,GB,London,Guided City Tour,Things To Do,activities,169.34,4.3,307,False
+D00038,GB,London,Escape Room Experience,Things To Do,activities,52.16,4.4,166,False
+D00039,GB,London,Gym Membership Pass,Health & Fitness,fitness,157.19,4.3,276,True
+D00040,GB,London,Personal Training Package,Health & Fitness,fitness,33.22,4.4,241,True
+D00041,GB,London,Personal Training Package,Health & Fitness,fitness,57.22,4.7,151,True
+D00042,GB,London,Gym Membership Pass,Health & Fitness,fitness,94.95,4.4,726,True
+D00043,GB,London,Unlimited Fitness Classes,Health & Fitness,fitness,82.54,3.6,107,True
+D00044,GB,London,Unlimited Fitness Classes,Health & Fitness,fitness,41.36,4.0,59,True
+D00045,GB,London,Unlimited Fitness Classes,Health & Fitness,fitness,69.98,4.2,180,True
+D00046,GB,London,Unlimited Fitness Classes,Health & Fitness,fitness,43.95,4.3,47,False
+D00047,GB,London,Gym Membership Pass,Health & Fitness,fitness,162.3,4.3,96,True
+D00048,GB,London,Unlimited Fitness Classes,Health & Fitness,fitness,166.27,3.5,63,True
+D00049,GB,London,Unlimited Fitness Classes,Health & Fitness,fitness,36.28,4.5,38,True
+D00050,GB,London,Personal Training Package,Health & Fitness,fitness,136.76,4.4,286,True
+D00051,GB,London,Personal Training Package,Health & Fitness,fitness,62.49,4.2,336,True
+D00052,GB,London,Personal Training Package,Health & Fitness,fitness,28.7,4.3,349,False
+D00053,GB,London,Gym Membership Pass,Health & Fitness,fitness,40.89,3.7,520,True
+D00054,GB,London,Unlimited Fitness Classes,Health & Fitness,fitness,43.15,5.0,190,True
+D00055,GB,London,Unlimited Fitness Classes,Health & Fitness,fitness,125.86,3.9,60,True
+D00056,GB,London,Hair Styling & Cut,Beauty & Wellness,beauty,162.51,4.4,334,True
+D00057,GB,London,Hair Styling & Cut,Beauty & Wellness,beauty,58.88,4.1,186,True
+D00058,GB,London,Facial Treatment,Beauty & Wellness,beauty,94.87,3.8,77,False
+D00059,GB,London,Manicure & Pedicure Package,Beauty & Wellness,beauty,89.58,4.4,288,True
+D00060,GB,London,Hair Styling & Cut,Beauty & Wellness,beauty,31.17,3.9,133,True
+D00061,GB,London,Facial Treatment,Beauty & Wellness,beauty,121.66,4.7,247,True
+D00062,GB,London,Manicure & Pedicure Package,Beauty & Wellness,beauty,109.34,4.0,146,True
+D00063,GB,London,Hair Styling & Cut,Beauty & Wellness,beauty,170.78,4.1,41,True
+D00064,GB,London,Facial Treatment,Beauty & Wellness,beauty,164.02,4.3,301,True
+D00065,GB,London,Manicure & Pedicure Package,Beauty & Wellness,beauty,117.27,4.2,703,True
+D00066,GB,London,Manicure & Pedicure Package,Beauty & Wellness,beauty,136.64,4.0,111,True
+D00067,GB,London,Manicure & Pedicure Package,Beauty & Wellness,beauty,24.62,3.7,219,True
+D00068,GB,London,Facial Treatment,Beauty & Wellness,beauty,50.94,3.8,157,False
+D00069,GB,London,Facial Treatment,Beauty & Wellness,beauty,131.9,5.0,333,False
+D00070,GB,Manchester,Full Body Massage Package,Beauty & Wellness,massage,127.42,4.3,216,True
+D00071,GB,Manchester,Full Body Massage Package,Beauty & Wellness,massage,70.91,4.4,146,True
+D00072,GB,Manchester,Full Body Massage Package,Beauty & Wellness,massage,16.29,4.3,239,False
+D00073,GB,Manchester,Full Body Massage Package,Beauty & Wellness,massage,29.85,4.4,100,True
+D00074,GB,Manchester,Relaxing Wellness Session,Beauty & Wellness,massage,130.64,4.2,178,True
+D00075,GB,Manchester,Three-Course Meal for Two,Food & Drink,dining,139.26,4.7,22,True
+D00076,GB,Manchester,Tasting Menu for Two,Food & Drink,dining,176.9,3.5,237,False
+D00077,GB,Manchester,Three-Course Meal for Two,Food & Drink,dining,109.3,3.7,155,False
+D00078,GB,Manchester,Guided City Tour,Things To Do,activities,84.41,4.2,635,True
+D00079,GB,Manchester,Escape Room Experience,Things To Do,activities,80.63,4.3,79,True
+D00080,GB,Manchester,Guided City Tour,Things To Do,activities,52.05,4.5,160,False
+D00081,GB,Manchester,Personal Training Package,Health & Fitness,fitness,34.83,4.4,515,True
+D00082,GB,Manchester,Gym Membership Pass,Health & Fitness,fitness,58.7,4.7,69,True
+D00083,GB,Manchester,Unlimited Fitness Classes,Health & Fitness,fitness,50.95,4.0,88,True
+D00084,GB,Manchester,Hair Styling & Cut,Beauty & Wellness,beauty,127.43,4.3,247,True
+D00085,GB,Manchester,Hair Styling & Cut,Beauty & Wellness,beauty,143.1,3.7,48,False
+D00086,GB,Manchester,Facial Treatment,Beauty & Wellness,beauty,88.23,4.3,315,True
+D00087,GB,Manchester,Facial Treatment,Beauty & Wellness,beauty,82.76,4.6,226,True
+D00088,GB,Manchester,Manicure & Pedicure Package,Beauty & Wellness,beauty,30.58,4.5,294,True
+D00089,GB,Birmingham,Relaxing Wellness Session,Beauty & Wellness,massage,46.08,3.9,252,True
+D00090,GB,Birmingham,Spa & Massage Treatment,Beauty & Wellness,massage,115.41,4.6,126,True
+D00091,GB,Birmingham,Spa & Massage Treatment,Beauty & Wellness,massage,42.92,4.5,262,True
+D00092,GB,Birmingham,Relaxing Wellness Session,Beauty & Wellness,massage,118.33,4.4,239,True
+D00093,GB,Birmingham,Spa & Massage Treatment,Beauty & Wellness,massage,90.34,4.5,91,True
+D00094,GB,Birmingham,Tasting Menu for Two,Food & Drink,dining,74.2,4.0,179,False
+D00095,GB,Birmingham,Dinner & Wine Experience,Food & Drink,dining,153.87,4.5,291,True
+D00096,GB,Birmingham,Tasting Menu for Two,Food & Drink,dining,78.78,4.2,8,False
+D00097,GB,Birmingham,Tasting Menu for Two,Food & Drink,dining,49.46,4.1,184,False
+D00098,GB,Birmingham,Dinner & Wine Experience,Food & Drink,dining,33.67,4.4,256,True
+D00099,GB,Birmingham,Tasting Menu for Two,Food & Drink,dining,117.14,4.7,330,False
+D00100,GB,Birmingham,Escape Room Experience,Things To Do,activities,30.94,4.4,287,True
+D00101,GB,Birmingham,Guided City Tour,Things To Do,activities,66.52,4.3,215,False
+D00102,GB,Birmingham,Guided City Tour,Things To Do,activities,42.11,4.2,243,True
+D00103,GB,Birmingham,Gym Membership Pass,Health & Fitness,fitness,178.26,4.0,81,False
+D00104,GB,Birmingham,Unlimited Fitness Classes,Health & Fitness,fitness,42.44,4.1,3,False
+D00105,GB,Birmingham,Unlimited Fitness Classes,Health & Fitness,fitness,110.55,4.4,121,False
+D00106,GB,Birmingham,Gym Membership Pass,Health & Fitness,fitness,53.84,4.7,306,True
+D00107,GB,Birmingham,Unlimited Fitness Classes,Health & Fitness,fitness,24.15,3.9,377,True
+D00108,GB,Birmingham,Manicure & Pedicure Package,Beauty & Wellness,beauty,81.29,4.9,9,True
+D00109,GB,Birmingham,Facial Treatment,Beauty & Wellness,beauty,126.49,5.0,156,True
+D00110,GB,Birmingham,Manicure & Pedicure Package,Beauty & Wellness,beauty,33.48,4.5,224,True
+D00111,GB,Birmingham,Manicure & Pedicure Package,Beauty & Wellness,beauty,81.47,3.9,183,True
+D00112,GB,Birmingham,Facial Treatment,Beauty & Wellness,beauty,84.09,3.6,297,True
+D00113,GB,Birmingham,Manicure & Pedicure Package,Beauty & Wellness,beauty,137.39,4.4,468,True
+D00114,GB,Birmingham,Manicure & Pedicure Package,Beauty & Wellness,beauty,20.15,4.4,131,True
+D00115,GB,Birmingham,Facial Treatment,Beauty & Wellness,beauty,72.94,4.3,74,False
+D00116,GB,Glasgow,Full Body Massage Package,Beauty & Wellness,massage,76.75,4.4,84,True
+D00117,GB,Glasgow,Full Body Massage Package,Beauty & Wellness,massage,25.18,4.5,62,True
+D00118,GB,Glasgow,Full Body Massage Package,Beauty & Wellness,massage,85.17,3.8,403,True
+D00119,GB,Glasgow,Relaxing Wellness Session,Beauty & Wellness,massage,13.26,4.5,119,True
+D00120,GB,Glasgow,Spa & Massage Treatment,Beauty & Wellness,massage,177.97,4.4,139,True
+D00121,GB,Glasgow,Three-Course Meal for Two,Food & Drink,dining,147.33,5.0,717,True
+D00122,GB,Glasgow,Three-Course Meal for Two,Food & Drink,dining,118.79,4.6,100,True
+D00123,GB,Glasgow,Dinner & Wine Experience,Food & Drink,dining,30.71,3.7,207,False
+D00124,GB,Glasgow,Tasting Menu for Two,Food & Drink,dining,72.44,5.0,616,True
+D00125,GB,Glasgow,Dinner & Wine Experience,Food & Drink,dining,159.4,4.4,297,True
+D00126,GB,Glasgow,Escape Room Experience,Things To Do,activities,89.7,4.3,78,True
+D00127,GB,Glasgow,Guided City Tour,Things To Do,activities,168.13,4.6,309,True
+D00128,GB,Glasgow,Guided City Tour,Things To Do,activities,36.56,4.4,124,True
+D00129,GB,Glasgow,Gym Membership Pass,Health & Fitness,fitness,95.78,4.6,344,True
+D00130,GB,Glasgow,Gym Membership Pass,Health & Fitness,fitness,62.59,4.4,64,True
+D00131,GB,Glasgow,Gym Membership Pass,Health & Fitness,fitness,136.01,4.0,176,False
+D00132,GB,Glasgow,Personal Training Package,Health & Fitness,fitness,53.35,3.8,69,True
+D00133,GB,Glasgow,Gym Membership Pass,Health & Fitness,fitness,161.11,4.5,139,True
+D00134,GB,Glasgow,Unlimited Fitness Classes,Health & Fitness,fitness,151.16,3.6,85,True
+D00135,GB,Glasgow,Personal Training Package,Health & Fitness,fitness,56.59,4.6,237,False
+D00136,GB,Glasgow,Hair Styling & Cut,Beauty & Wellness,beauty,60.08,4.4,154,True
+D00137,GB,Glasgow,Facial Treatment,Beauty & Wellness,beauty,16.83,3.6,340,True
+D00138,GB,Glasgow,Hair Styling & Cut,Beauty & Wellness,beauty,48.72,4.6,128,True
+D00139,GB,Glasgow,Hair Styling & Cut,Beauty & Wellness,beauty,82.65,4.8,218,True
+D00140,GB,Glasgow,Hair Styling & Cut,Beauty & Wellness,beauty,74.02,3.9,59,True
+D00141,GB,Glasgow,Hair Styling & Cut,Beauty & Wellness,beauty,83.55,4.1,144,True
+D00142,DE,Berlin,Wellness-Massage Paket,Beauty & Wellness,massage,140.43,4.8,79,True
+D00143,DE,Berlin,Wellness-Massage Paket,Beauty & Wellness,massage,26.99,4.3,204,False
+D00144,DE,Berlin,Wellness-Massage Paket,Beauty & Wellness,massage,20.61,4.3,148,True
+D00145,DE,Berlin,Wellness-Massage Paket,Beauty & Wellness,massage,28.85,4.0,211,True
+D00146,DE,Berlin,Wohlfühl-Massage,Beauty & Wellness,massage,109.53,4.5,240,False
+D00147,DE,Berlin,Wellness-Massage Paket,Beauty & Wellness,massage,169.13,3.9,218,False
+D00148,DE,Berlin,Wohlfühl-Massage,Beauty & Wellness,massage,12.63,3.9,4,False
+D00149,DE,Berlin,Wohlfühl-Massage,Beauty & Wellness,massage,151.18,4.2,451,True
+D00150,DE,Berlin,Wellness-Massage Paket,Beauty & Wellness,massage,117.11,4.4,320,True
+D00151,DE,Berlin,3-Gänge-Menü für Zwei,Food & Drink,dining,52.59,4.7,325,True
+D00152,DE,Berlin,Degustationsmenü,Food & Drink,dining,99.78,4.5,91,True
+D00153,DE,Berlin,Dinner mit Weinbegleitung,Food & Drink,dining,134.75,4.3,142,False
+D00154,DE,Berlin,Degustationsmenü,Food & Drink,dining,90.12,4.3,155,True
+D00155,DE,Berlin,Degustationsmenü,Food & Drink,dining,56.78,3.5,12,False
+D00156,DE,Berlin,Dinner mit Weinbegleitung,Food & Drink,dining,170.76,4.4,193,True
+D00157,DE,Berlin,Degustationsmenü,Food & Drink,dining,160.29,4.3,3,True
+D00158,DE,Berlin,3-Gänge-Menü für Zwei,Food & Drink,dining,163.3,4.4,494,True
+D00159,DE,Berlin,Escape Room Erlebnis,Things To Do,activities,157.46,3.7,149,True
+D00160,DE,Berlin,Stadtführung,Things To Do,activities,58.73,4.5,268,False
+D00161,DE,Berlin,Kartbahn Rennen,Things To Do,activities,24.55,4.5,63,False
+D00162,DE,Berlin,Kartbahn Rennen,Things To Do,activities,161.56,4.4,152,True
+D00163,DE,Berlin,Escape Room Erlebnis,Things To Do,activities,167.96,3.8,292,True
+D00164,DE,Berlin,Stadtführung,Things To Do,activities,110.52,4.6,156,False
+D00165,DE,Berlin,Escape Room Erlebnis,Things To Do,activities,175.78,4.3,69,True
+D00166,DE,Berlin,Escape Room Erlebnis,Things To Do,activities,110.89,4.3,55,True
+D00167,DE,Berlin,Kartbahn Rennen,Things To Do,activities,103.51,4.1,140,False
+D00168,DE,Berlin,Escape Room Erlebnis,Things To Do,activities,21.37,4.3,63,False
+D00169,DE,Berlin,Fitnessstudio Mitgliedschaft,Health & Fitness,fitness,75.15,3.7,255,True
+D00170,DE,Berlin,Personal Training Paket,Health & Fitness,fitness,30.88,4.5,237,True
+D00171,DE,Berlin,Personal Training Paket,Health & Fitness,fitness,31.28,4.2,234,False
+D00172,DE,Berlin,Fitnessstudio Mitgliedschaft,Health & Fitness,fitness,102.03,4.7,53,False
+D00173,DE,Berlin,Unbegrenzte Kurse,Health & Fitness,fitness,166.78,4.3,262,False
+D00174,DE,Berlin,Unbegrenzte Kurse,Health & Fitness,fitness,115.83,5.0,228,False
+D00175,DE,Berlin,Personal Training Paket,Health & Fitness,fitness,82.86,3.8,141,True
+D00176,DE,Berlin,Fitnessstudio Mitgliedschaft,Health & Fitness,fitness,50.13,4.4,233,False
+D00177,DE,Berlin,Personal Training Paket,Health & Fitness,fitness,105.46,4.9,166,True
+D00178,DE,Berlin,Maniküre & Pediküre,Beauty & Wellness,beauty,131.51,3.5,32,False
+D00179,DE,Berlin,Gesichtsbehandlung,Beauty & Wellness,beauty,89.27,4.9,273,False
+D00180,DE,Berlin,Maniküre & Pediküre,Beauty & Wellness,beauty,30.81,4.0,423,True
+D00181,DE,Berlin,Haarschnitt & Styling,Beauty & Wellness,beauty,31.68,4.2,310,False
+D00182,DE,Berlin,Haarschnitt & Styling,Beauty & Wellness,beauty,131.84,5.0,19,True
+D00183,DE,Berlin,Gesichtsbehandlung,Beauty & Wellness,beauty,160.53,4.4,10,False
+D00184,DE,Berlin,Haarschnitt & Styling,Beauty & Wellness,beauty,60.67,4.8,218,False
+D00185,DE,Berlin,Haarschnitt & Styling,Beauty & Wellness,beauty,24.06,3.5,83,False
+D00186,DE,Berlin,Gesichtsbehandlung,Beauty & Wellness,beauty,168.74,5.0,139,False
+D00187,DE,Berlin,Haarschnitt & Styling,Beauty & Wellness,beauty,72.14,4.4,366,False
+D00188,DE,Berlin,Gesichtsbehandlung,Beauty & Wellness,beauty,54.45,4.3,114,True
+D00189,DE,Berlin,Maniküre & Pediküre,Beauty & Wellness,beauty,90.21,4.7,74,False
+D00190,DE,München,Entspannungs-Behandlung im Spa,Beauty & Wellness,massage,163.96,4.8,385,False
+D00191,DE,München,Entspannungs-Behandlung im Spa,Beauty & Wellness,massage,80.98,4.4,119,True
+D00192,DE,München,Entspannungs-Behandlung im Spa,Beauty & Wellness,massage,140.06,3.9,5,False
+D00193,DE,München,3-Gänge-Menü für Zwei,Food & Drink,dining,155.68,4.6,221,False
+D00194,DE,München,Dinner mit Weinbegleitung,Food & Drink,dining,75.79,4.3,207,True
+D00195,DE,München,Degustationsmenü,Food & Drink,dining,26.19,4.0,204,False
+D00196,DE,München,Degustationsmenü,Food & Drink,dining,145.15,5.0,202,False
+D00197,DE,München,Dinner mit Weinbegleitung,Food & Drink,dining,22.39,5.0,161,True
+D00198,DE,München,Dinner mit Weinbegleitung,Food & Drink,dining,125.32,4.8,77,True
+D00199,DE,München,3-Gänge-Menü für Zwei,Food & Drink,dining,103.48,4.1,143,True
+D00200,DE,München,Kartbahn Rennen,Things To Do,activities,15.12,4.2,305,True
+D00201,DE,München,Stadtführung,Things To Do,activities,95.66,3.5,418,True
+D00202,DE,München,Stadtführung,Things To Do,activities,163.84,4.4,156,True
+D00203,DE,München,Kartbahn Rennen,Things To Do,activities,95.5,5.0,24,False
+D00204,DE,München,Kartbahn Rennen,Things To Do,activities,114.45,4.6,509,True
+D00205,DE,München,Stadtführung,Things To Do,activities,43.41,3.8,90,True
+D00206,DE,München,Escape Room Erlebnis,Things To Do,activities,102.5,5.0,247,True
+D00207,DE,München,Fitnessstudio Mitgliedschaft,Health & Fitness,fitness,60.77,4.2,135,False
+D00208,DE,München,Gesichtsbehandlung,Beauty & Wellness,beauty,67.27,4.3,192,False
+D00209,DE,München,Gesichtsbehandlung,Beauty & Wellness,beauty,128.41,4.4,339,True
+D00210,DE,München,Gesichtsbehandlung,Beauty & Wellness,beauty,55.25,4.7,93,False
+D00211,DE,München,Maniküre & Pediküre,Beauty & Wellness,beauty,59.59,4.2,267,True
+D00212,DE,München,Gesichtsbehandlung,Beauty & Wellness,beauty,99.7,3.7,69,True
+D00213,DE,München,Gesichtsbehandlung,Beauty & Wellness,beauty,153.77,4.3,427,True
+D00214,DE,Hamburg,Entspannungs-Behandlung im Spa,Beauty & Wellness,massage,91.82,4.1,291,False
+D00215,DE,Hamburg,Wohlfühl-Massage,Beauty & Wellness,massage,35.83,3.7,511,False
+D00216,DE,Hamburg,Degustationsmenü,Food & Drink,dining,167.96,5.0,186,True
+D00217,DE,Hamburg,Dinner mit Weinbegleitung,Food & Drink,dining,154.86,4.2,329,False
+D00218,DE,Hamburg,Degustationsmenü,Food & Drink,dining,104.83,4.5,42,False
+D00219,DE,Hamburg,Stadtführung,Things To Do,activities,135.01,4.3,98,False
+D00220,DE,Hamburg,Escape Room Erlebnis,Things To Do,activities,20.75,4.1,216,True
+D00221,DE,Hamburg,Escape Room Erlebnis,Things To Do,activities,125.05,4.9,438,True
+D00222,DE,Hamburg,Stadtführung,Things To Do,activities,50.1,4.2,409,True
+D00223,DE,Hamburg,Kartbahn Rennen,Things To Do,activities,30.73,4.2,169,True
+D00224,DE,Hamburg,Unbegrenzte Kurse,Health & Fitness,fitness,155.7,5.0,369,True
+D00225,DE,Hamburg,Fitnessstudio Mitgliedschaft,Health & Fitness,fitness,157.1,4.2,251,True
+D00226,DE,Hamburg,Fitnessstudio Mitgliedschaft,Health & Fitness,fitness,43.72,4.3,136,False
+D00227,DE,Hamburg,Fitnessstudio Mitgliedschaft,Health & Fitness,fitness,57.26,3.7,128,False
+D00228,DE,Hamburg,Fitnessstudio Mitgliedschaft,Health & Fitness,fitness,143.56,4.5,185,False
+D00229,DE,Hamburg,Personal Training Paket,Health & Fitness,fitness,63.57,4.1,76,True
+D00230,DE,Hamburg,Gesichtsbehandlung,Beauty & Wellness,beauty,38.48,4.2,205,False
+D00231,DE,Hamburg,Gesichtsbehandlung,Beauty & Wellness,beauty,46.4,4.1,155,False
+D00232,DE,Hamburg,Maniküre & Pediküre,Beauty & Wellness,beauty,105.05,4.6,63,False
+D00233,DE,Hamburg,Gesichtsbehandlung,Beauty & Wellness,beauty,51.47,4.1,239,False
+D00234,DE,Hamburg,Haarschnitt & Styling,Beauty & Wellness,beauty,66.31,4.1,315,False
+D00235,DE,Köln,Wohlfühl-Massage,Beauty & Wellness,massage,87.18,4.7,251,True
+D00236,DE,Köln,Entspannungs-Behandlung im Spa,Beauty & Wellness,massage,149.06,4.1,34,True
+D00237,DE,Köln,Entspannungs-Behandlung im Spa,Beauty & Wellness,massage,105.19,4.3,109,False
+D00238,DE,Köln,Entspannungs-Behandlung im Spa,Beauty & Wellness,massage,129.46,4.5,31,False
+D00239,DE,Köln,Wohlfühl-Massage,Beauty & Wellness,massage,145.13,4.9,54,False
+D00240,DE,Köln,Wohlfühl-Massage,Beauty & Wellness,massage,92.52,4.7,446,True
+D00241,DE,Köln,Entspannungs-Behandlung im Spa,Beauty & Wellness,massage,163.14,4.6,65,True
+D00242,DE,Köln,Degustationsmenü,Food & Drink,dining,123.35,4.0,139,True
+D00243,DE,Köln,3-Gänge-Menü für Zwei,Food & Drink,dining,77.31,4.4,288,False
+D00244,DE,Köln,Degustationsmenü,Food & Drink,dining,40.53,4.3,95,True
+D00245,DE,Köln,3-Gänge-Menü für Zwei,Food & Drink,dining,145.59,4.3,66,False
+D00246,DE,Köln,Dinner mit Weinbegleitung,Food & Drink,dining,141.6,4.2,92,False
+D00247,DE,Köln,Dinner mit Weinbegleitung,Food & Drink,dining,156.79,4.6,163,True
+D00248,DE,Köln,Dinner mit Weinbegleitung,Food & Drink,dining,143.44,4.2,266,False
+D00249,DE,Köln,Kartbahn Rennen,Things To Do,activities,84.73,4.4,194,False
+D00250,DE,Köln,Escape Room Erlebnis,Things To Do,activities,76.41,3.9,131,True
+D00251,DE,Köln,Escape Room Erlebnis,Things To Do,activities,38.25,4.6,46,True
+D00252,DE,Köln,Escape Room Erlebnis,Things To Do,activities,92.08,4.4,17,True
+D00253,DE,Köln,Escape Room Erlebnis,Things To Do,activities,94.16,4.3,206,False
+D00254,DE,Köln,Unbegrenzte Kurse,Health & Fitness,fitness,166.43,3.9,250,True
+D00255,DE,Köln,Personal Training Paket,Health & Fitness,fitness,98.45,4.6,228,False
+D00256,DE,Köln,Fitnessstudio Mitgliedschaft,Health & Fitness,fitness,121.42,3.8,132,False
+D00257,DE,Köln,Unbegrenzte Kurse,Health & Fitness,fitness,114.23,4.7,36,False
+D00258,DE,Köln,Unbegrenzte Kurse,Health & Fitness,fitness,113.86,4.8,206,False
+D00259,DE,Köln,Unbegrenzte Kurse,Health & Fitness,fitness,138.97,3.5,241,True
+D00260,DE,Köln,Fitnessstudio Mitgliedschaft,Health & Fitness,fitness,132.09,4.5,686,False
+D00261,DE,Köln,Haarschnitt & Styling,Beauty & Wellness,beauty,61.0,4.2,106,False
+D00262,DE,Köln,Maniküre & Pediküre,Beauty & Wellness,beauty,91.03,4.7,107,True
+D00263,DE,Köln,Haarschnitt & Styling,Beauty & Wellness,beauty,17.25,4.5,329,False
+D00264,FR,Paris,Modelage Détente,Beauty & Wellness,massage,70.94,4.2,516,False
+D00265,FR,Paris,Forfait Massage Bien-être,Beauty & Wellness,massage,161.01,4.6,435,True
+D00266,FR,Paris,Forfait Massage Bien-être,Beauty & Wellness,massage,119.5,4.1,208,True
+D00267,FR,Paris,Forfait Massage Bien-être,Beauty & Wellness,massage,144.17,4.4,176,True
+D00268,FR,Paris,Modelage Détente,Beauty & Wellness,massage,126.71,4.2,25,False
+D00269,FR,Paris,Forfait Massage Bien-être,Beauty & Wellness,massage,23.48,4.8,261,False
+D00270,FR,Paris,Modelage Détente,Beauty & Wellness,massage,27.52,3.6,236,True
+D00271,FR,Paris,Modelage Détente,Beauty & Wellness,massage,22.99,4.8,332,False
+D00272,FR,Paris,Forfait Massage Bien-être,Beauty & Wellness,massage,148.44,4.0,153,False
+D00273,FR,Paris,Modelage Détente,Beauty & Wellness,massage,104.05,4.4,57,True
+D00274,FR,Paris,Séance Spa Relaxante,Beauty & Wellness,massage,142.16,4.9,140,True
+D00275,FR,Paris,Forfait Massage Bien-être,Beauty & Wellness,massage,135.02,3.9,166,True
+D00276,FR,Paris,Forfait Massage Bien-être,Beauty & Wellness,massage,50.98,4.6,8,True
+D00277,FR,Paris,Dîner avec Vin,Food & Drink,dining,105.3,4.2,456,True
+D00278,FR,Paris,Menu Dégustation,Food & Drink,dining,155.62,4.1,28,True
+D00279,FR,Paris,Menu 3 Plats pour Deux,Food & Drink,dining,175.21,3.9,347,True
+D00280,FR,Paris,Menu 3 Plats pour Deux,Food & Drink,dining,146.53,4.8,525,False
+D00281,FR,Paris,Menu 3 Plats pour Deux,Food & Drink,dining,93.55,4.6,391,False
+D00282,FR,Paris,Dîner avec Vin,Food & Drink,dining,142.52,4.1,12,False
+D00283,FR,Paris,Menu 3 Plats pour Deux,Food & Drink,dining,15.93,4.1,230,True
+D00284,FR,Paris,Dîner avec Vin,Food & Drink,dining,99.29,3.9,114,False
+D00285,FR,Paris,Expérience Escape Game,Things To Do,activities,52.41,4.4,92,True
+D00286,FR,Paris,Session Karting,Things To Do,activities,97.71,5.0,336,True
+D00287,FR,Paris,Expérience Escape Game,Things To Do,activities,39.3,4.6,521,True
+D00288,FR,Paris,Visite Guidée,Things To Do,activities,51.62,4.7,376,False
+D00289,FR,Paris,Expérience Escape Game,Things To Do,activities,95.64,4.7,165,True
+D00290,FR,Paris,Expérience Escape Game,Things To Do,activities,114.85,3.9,32,True
+D00291,FR,Paris,Expérience Escape Game,Things To Do,activities,45.06,4.3,58,True
+D00292,FR,Paris,Visite Guidée,Things To Do,activities,117.13,4.6,70,True
+D00293,FR,Paris,Visite Guidée,Things To Do,activities,45.45,4.2,387,False
+D00294,FR,Paris,Visite Guidée,Things To Do,activities,58.36,4.7,89,True
+D00295,FR,Paris,Expérience Escape Game,Things To Do,activities,22.94,3.9,253,True
+D00296,FR,Paris,Expérience Escape Game,Things To Do,activities,88.27,3.9,345,False
+D00297,FR,Paris,Visite Guidée,Things To Do,activities,169.5,4.1,137,True
+D00298,FR,Paris,Coaching Personnel,Health & Fitness,fitness,59.22,4.3,78,False
+D00299,FR,Paris,Coaching Personnel,Health & Fitness,fitness,16.04,4.2,459,True
+D00300,FR,Paris,Coaching Personnel,Health & Fitness,fitness,151.76,4.9,148,True
+D00301,FR,Paris,Abonnement Salle de Sport,Health & Fitness,fitness,78.09,4.2,110,True
+D00302,FR,Paris,Cours Illimités,Health & Fitness,fitness,164.34,4.7,126,True
+D00303,FR,Paris,Abonnement Salle de Sport,Health & Fitness,fitness,113.69,4.3,104,False
+D00304,FR,Paris,Abonnement Salle de Sport,Health & Fitness,fitness,173.16,4.3,52,False
+D00305,FR,Paris,Coaching Personnel,Health & Fitness,fitness,92.05,4.2,82,False
+D00306,FR,Paris,Soin du Visage,Beauty & Wellness,beauty,59.0,4.2,18,True
+D00307,FR,Paris,Manucure & Pédicure,Beauty & Wellness,beauty,144.42,4.5,343,False
+D00308,FR,Paris,Soin du Visage,Beauty & Wellness,beauty,65.75,4.4,371,True
+D00309,FR,Paris,Manucure & Pédicure,Beauty & Wellness,beauty,82.19,3.9,336,False
+D00310,FR,Paris,Manucure & Pédicure,Beauty & Wellness,beauty,179.26,4.0,128,True
+D00311,FR,Paris,Coupe & Coiffage,Beauty & Wellness,beauty,115.5,5.0,371,False
+D00312,FR,Paris,Coupe & Coiffage,Beauty & Wellness,beauty,124.89,4.2,219,True
+D00313,FR,Paris,Manucure & Pédicure,Beauty & Wellness,beauty,22.06,3.7,169,False
+D00314,FR,Paris,Coupe & Coiffage,Beauty & Wellness,beauty,97.16,4.2,275,True
+D00315,FR,Paris,Manucure & Pédicure,Beauty & Wellness,beauty,79.67,4.3,388,True
+D00316,FR,Paris,Manucure & Pédicure,Beauty & Wellness,beauty,173.99,4.2,117,True
+D00317,FR,Paris,Manucure & Pédicure,Beauty & Wellness,beauty,26.77,5.0,35,True
+D00318,FR,Paris,Coupe & Coiffage,Beauty & Wellness,beauty,25.86,4.5,434,False
+D00319,FR,Paris,Manucure & Pédicure,Beauty & Wellness,beauty,128.18,4.6,290,True
+D00320,FR,Lyon,Modelage Détente,Beauty & Wellness,massage,172.18,4.1,111,True
+D00321,FR,Lyon,Modelage Détente,Beauty & Wellness,massage,63.82,3.6,106,True
+D00322,FR,Lyon,Séance Spa Relaxante,Beauty & Wellness,massage,146.56,4.4,127,True
+D00323,FR,Lyon,Modelage Détente,Beauty & Wellness,massage,14.68,3.8,408,False
+D00324,FR,Lyon,Menu Dégustation,Food & Drink,dining,112.21,4.7,136,True
+D00325,FR,Lyon,Expérience Escape Game,Things To Do,activities,28.8,4.1,265,True
+D00326,FR,Lyon,Visite Guidée,Things To Do,activities,155.89,4.5,395,False
+D00327,FR,Lyon,Session Karting,Things To Do,activities,43.58,4.7,545,True
+D00328,FR,Lyon,Session Karting,Things To Do,activities,56.99,4.5,153,False
+D00329,FR,Lyon,Visite Guidée,Things To Do,activities,151.62,3.1,739,False
+D00330,FR,Lyon,Session Karting,Things To Do,activities,60.09,4.6,131,True
+D00331,FR,Lyon,Cours Illimités,Health & Fitness,fitness,100.89,4.1,275,True
+D00332,FR,Lyon,Coaching Personnel,Health & Fitness,fitness,21.97,4.1,174,False
+D00333,FR,Lyon,Cours Illimités,Health & Fitness,fitness,101.44,3.8,337,True
+D00334,FR,Lyon,Cours Illimités,Health & Fitness,fitness,51.58,3.8,300,True
+D00335,FR,Lyon,Cours Illimités,Health & Fitness,fitness,19.29,4.0,533,False
+D00336,FR,Lyon,Abonnement Salle de Sport,Health & Fitness,fitness,150.53,4.6,37,False
+D00337,FR,Lyon,Coaching Personnel,Health & Fitness,fitness,163.86,4.1,140,True
+D00338,FR,Lyon,Manucure & Pédicure,Beauty & Wellness,beauty,121.44,4.8,15,True
+D00339,FR,Lyon,Manucure & Pédicure,Beauty & Wellness,beauty,22.08,3.7,185,False
+D00340,FR,Lyon,Soin du Visage,Beauty & Wellness,beauty,94.36,3.6,245,False
+D00341,FR,Marseille,Modelage Détente,Beauty & Wellness,massage,67.65,4.0,282,True
+D00342,FR,Marseille,Séance Spa Relaxante,Beauty & Wellness,massage,48.79,3.8,587,False
+D00343,FR,Marseille,Forfait Massage Bien-être,Beauty & Wellness,massage,114.28,4.8,186,False
+D00344,FR,Marseille,Menu 3 Plats pour Deux,Food & Drink,dining,15.31,4.8,45,True
+D00345,FR,Marseille,Menu 3 Plats pour Deux,Food & Drink,dining,30.2,4.4,197,True
+D00346,FR,Marseille,Menu Dégustation,Food & Drink,dining,51.61,4.1,10,False
+D00347,FR,Marseille,Visite Guidée,Things To Do,activities,142.05,3.9,398,True
+D00348,FR,Marseille,Visite Guidée,Things To Do,activities,173.77,5.0,130,True
+D00349,FR,Marseille,Expérience Escape Game,Things To Do,activities,13.94,4.5,338,True
+D00350,FR,Marseille,Expérience Escape Game,Things To Do,activities,77.66,3.8,119,False
+D00351,FR,Marseille,Visite Guidée,Things To Do,activities,31.81,4.6,58,False
+D00352,FR,Marseille,Expérience Escape Game,Things To Do,activities,58.74,4.0,177,False
+D00353,FR,Marseille,Expérience Escape Game,Things To Do,activities,91.45,4.0,434,False
+D00354,FR,Marseille,Cours Illimités,Health & Fitness,fitness,71.88,3.9,90,True
+D00355,FR,Marseille,Coaching Personnel,Health & Fitness,fitness,160.0,4.3,398,False
+D00356,FR,Marseille,Coaching Personnel,Health & Fitness,fitness,36.57,4.7,454,True
+D00357,FR,Marseille,Coaching Personnel,Health & Fitness,fitness,149.43,4.5,377,True
+D00358,FR,Marseille,Abonnement Salle de Sport,Health & Fitness,fitness,15.54,4.3,160,True
+D00359,FR,Marseille,Soin du Visage,Beauty & Wellness,beauty,105.81,4.2,324,True
+D00360,FR,Toulouse,Modelage Détente,Beauty & Wellness,massage,175.73,3.9,346,False
+D00361,FR,Toulouse,Forfait Massage Bien-être,Beauty & Wellness,massage,172.19,3.7,168,False
+D00362,FR,Toulouse,Forfait Massage Bien-être,Beauty & Wellness,massage,117.26,4.7,49,False
+D00363,FR,Toulouse,Forfait Massage Bien-être,Beauty & Wellness,massage,104.92,4.7,293,True
+D00364,FR,Toulouse,Menu 3 Plats pour Deux,Food & Drink,dining,127.2,4.3,286,True
+D00365,FR,Toulouse,Menu 3 Plats pour Deux,Food & Drink,dining,159.33,4.5,17,True
+D00366,FR,Toulouse,Menu 3 Plats pour Deux,Food & Drink,dining,34.9,4.6,279,True
+D00367,FR,Toulouse,Menu 3 Plats pour Deux,Food & Drink,dining,175.1,3.6,174,True
+D00368,FR,Toulouse,Dîner avec Vin,Food & Drink,dining,172.01,4.6,424,True
+D00369,FR,Toulouse,Visite Guidée,Things To Do,activities,21.19,5.0,433,True
+D00370,FR,Toulouse,Visite Guidée,Things To Do,activities,51.33,4.2,403,False
+D00371,FR,Toulouse,Visite Guidée,Things To Do,activities,134.99,4.3,31,True
+D00372,FR,Toulouse,Session Karting,Things To Do,activities,80.71,5.0,428,False
+D00373,FR,Toulouse,Session Karting,Things To Do,activities,76.83,4.7,97,False
+D00374,FR,Toulouse,Visite Guidée,Things To Do,activities,144.39,4.3,135,True
+D00375,FR,Toulouse,Expérience Escape Game,Things To Do,activities,146.21,4.6,126,True
+D00376,FR,Toulouse,Cours Illimités,Health & Fitness,fitness,41.02,4.7,328,False
+D00377,FR,Toulouse,Cours Illimités,Health & Fitness,fitness,87.21,4.3,417,False
+D00378,FR,Toulouse,Coaching Personnel,Health & Fitness,fitness,124.96,4.4,764,False
+D00379,FR,Toulouse,Coaching Personnel,Health & Fitness,fitness,23.14,3.8,196,False
+D00380,FR,Toulouse,Coaching Personnel,Health & Fitness,fitness,19.63,5.0,193,True
+D00381,FR,Toulouse,Coaching Personnel,Health & Fitness,fitness,50.33,3.9,188,True
+D00382,FR,Toulouse,Cours Illimités,Health & Fitness,fitness,164.86,4.6,428,False
+D00383,FR,Toulouse,Soin du Visage,Beauty & Wellness,beauty,147.87,4.9,304,False
+D00384,FR,Toulouse,Soin du Visage,Beauty & Wellness,beauty,149.56,4.5,88,False
+D00385,FR,Toulouse,Coupe & Coiffage,Beauty & Wellness,beauty,63.32,4.3,512,False
+D00386,ES,Madrid,Tratamiento de Bienestar,Beauty & Wellness,massage,31.09,4.1,186,True
+D00387,ES,Madrid,Tratamiento de Bienestar,Beauty & Wellness,massage,179.46,5.0,83,True
+D00388,ES,Madrid,Circuito Spa con Masaje,Beauty & Wellness,massage,156.15,4.7,53,False
+D00389,ES,Madrid,Tratamiento de Bienestar,Beauty & Wellness,massage,113.39,4.0,170,False
+D00390,ES,Madrid,Circuito Spa con Masaje,Beauty & Wellness,massage,32.73,4.8,65,True
+D00391,ES,Madrid,Tratamiento de Bienestar,Beauty & Wellness,massage,129.91,4.4,297,True
+D00392,ES,Madrid,Circuito Spa con Masaje,Beauty & Wellness,massage,101.62,3.9,183,False
+D00393,ES,Madrid,Tratamiento de Bienestar,Beauty & Wellness,massage,45.19,4.7,329,False
+D00394,ES,Madrid,Circuito Spa con Masaje,Beauty & Wellness,massage,162.62,4.1,42,False
+D00395,ES,Madrid,Tratamiento de Bienestar,Beauty & Wellness,massage,147.18,4.3,598,False
+D00396,ES,Madrid,Tratamiento de Bienestar,Beauty & Wellness,massage,158.3,4.8,70,False
+D00397,ES,Madrid,Cena con Maridaje,Food & Drink,dining,105.53,4.9,330,True
+D00398,ES,Madrid,Menú de 3 Platos para Dos,Food & Drink,dining,74.92,4.5,36,True
+D00399,ES,Madrid,Cena con Maridaje,Food & Drink,dining,44.87,4.7,311,True
+D00400,ES,Madrid,Cena con Maridaje,Food & Drink,dining,143.21,3.7,240,True
+D00401,ES,Madrid,Cena con Maridaje,Food & Drink,dining,108.68,4.6,410,False
+D00402,ES,Madrid,Menú de 3 Platos para Dos,Food & Drink,dining,48.82,4.6,160,False
+D00403,ES,Madrid,Menú Degustación,Food & Drink,dining,163.63,3.9,464,True
+D00404,ES,Madrid,Tour Guiado,Things To Do,activities,46.24,4.8,80,True
+D00405,ES,Madrid,Tour Guiado,Things To Do,activities,96.05,5.0,55,True
+D00406,ES,Madrid,Experiencia Escape Room,Things To Do,activities,133.14,3.8,62,False
+D00407,ES,Madrid,Sesión de Karting,Things To Do,activities,107.58,4.6,444,True
+D00408,ES,Madrid,Experiencia Escape Room,Things To Do,activities,95.21,4.1,4,False
+D00409,ES,Madrid,Tour Guiado,Things To Do,activities,64.9,3.9,158,True
+D00410,ES,Madrid,Sesión de Karting,Things To Do,activities,58.3,5.0,64,False
+D00411,ES,Madrid,Experiencia Escape Room,Things To Do,activities,82.29,4.9,249,False
+D00412,ES,Madrid,Tour Guiado,Things To Do,activities,70.56,4.4,291,False
+D00413,ES,Madrid,Experiencia Escape Room,Things To Do,activities,170.84,4.2,134,False
+D00414,ES,Madrid,Tour Guiado,Things To Do,activities,176.23,4.6,317,False
+D00415,ES,Madrid,Tour Guiado,Things To Do,activities,119.13,4.4,232,False
+D00416,ES,Madrid,Experiencia Escape Room,Things To Do,activities,161.27,4.9,280,False
+D00417,ES,Madrid,Clases Ilimitadas,Health & Fitness,fitness,119.97,4.6,19,False
+D00418,ES,Madrid,Entrenamiento Personal,Health & Fitness,fitness,88.93,4.0,429,True
+D00419,ES,Madrid,Clases Ilimitadas,Health & Fitness,fitness,157.76,4.6,73,True
+D00420,ES,Madrid,Clases Ilimitadas,Health & Fitness,fitness,42.38,3.9,472,False
+D00421,ES,Madrid,Clases Ilimitadas,Health & Fitness,fitness,128.56,4.3,150,True
+D00422,ES,Madrid,Entrenamiento Personal,Health & Fitness,fitness,152.23,4.0,142,True
+D00423,ES,Madrid,Clases Ilimitadas,Health & Fitness,fitness,126.96,4.5,299,True
+D00424,ES,Madrid,Entrenamiento Personal,Health & Fitness,fitness,67.08,4.0,480,False
+D00425,ES,Madrid,Entrenamiento Personal,Health & Fitness,fitness,50.04,4.3,319,False
+D00426,ES,Madrid,Manicura y Pedicura,Beauty & Wellness,beauty,157.59,4.7,146,False
+D00427,ES,Madrid,Corte y Peinado,Beauty & Wellness,beauty,93.47,3.9,226,False
+D00428,ES,Madrid,Tratamiento Facial,Beauty & Wellness,beauty,140.55,3.1,427,False
+D00429,ES,Madrid,Corte y Peinado,Beauty & Wellness,beauty,140.54,4.5,278,True
+D00430,ES,Madrid,Tratamiento Facial,Beauty & Wellness,beauty,15.77,4.0,306,True
+D00431,ES,Madrid,Tratamiento Facial,Beauty & Wellness,beauty,64.48,4.7,246,True
+D00432,ES,Madrid,Tratamiento Facial,Beauty & Wellness,beauty,170.71,3.9,416,False
+D00433,ES,Madrid,Tratamiento Facial,Beauty & Wellness,beauty,17.89,5.0,31,False
+D00434,ES,Madrid,Manicura y Pedicura,Beauty & Wellness,beauty,170.72,4.5,229,True
+D00435,ES,Barcelona,Tratamiento de Bienestar,Beauty & Wellness,massage,27.77,4.1,64,True
+D00436,ES,Barcelona,Sesión de Masaje y Spa,Beauty & Wellness,massage,171.39,4.5,124,False
+D00437,ES,Barcelona,Sesión de Masaje y Spa,Beauty & Wellness,massage,53.13,4.0,322,False
+D00438,ES,Barcelona,Menú Degustación,Food & Drink,dining,158.76,3.8,170,False
+D00439,ES,Barcelona,Menú Degustación,Food & Drink,dining,61.67,3.7,111,False
+D00440,ES,Barcelona,Experiencia Escape Room,Things To Do,activities,143.91,3.8,303,False
+D00441,ES,Barcelona,Tour Guiado,Things To Do,activities,26.09,4.9,60,True
+D00442,ES,Barcelona,Tour Guiado,Things To Do,activities,116.61,3.9,186,False
+D00443,ES,Barcelona,Experiencia Escape Room,Things To Do,activities,53.68,4.0,15,True
+D00444,ES,Barcelona,Sesión de Karting,Things To Do,activities,110.2,3.7,13,True
+D00445,ES,Barcelona,Sesión de Karting,Things To Do,activities,41.33,5.0,97,True
+D00446,ES,Barcelona,Experiencia Escape Room,Things To Do,activities,161.76,4.0,318,False
+D00447,ES,Barcelona,Entrenamiento Personal,Health & Fitness,fitness,99.05,3.8,89,False
+D00448,ES,Barcelona,Clases Ilimitadas,Health & Fitness,fitness,26.2,4.6,153,False
+D00449,ES,Barcelona,Pase de Gimnasio,Health & Fitness,fitness,43.8,4.1,248,True
+D00450,ES,Barcelona,Clases Ilimitadas,Health & Fitness,fitness,94.16,4.2,34,False
+D00451,ES,Barcelona,Clases Ilimitadas,Health & Fitness,fitness,155.76,4.5,116,False
+D00452,ES,Barcelona,Entrenamiento Personal,Health & Fitness,fitness,96.13,3.6,28,True
+D00453,ES,Barcelona,Corte y Peinado,Beauty & Wellness,beauty,90.22,4.1,332,False
+D00454,ES,Barcelona,Manicura y Pedicura,Beauty & Wellness,beauty,52.16,5.0,20,False
+D00455,ES,Barcelona,Manicura y Pedicura,Beauty & Wellness,beauty,88.18,3.9,83,False
+D00456,ES,Barcelona,Tratamiento Facial,Beauty & Wellness,beauty,13.01,4.4,634,True
+D00457,ES,Valencia,Sesión de Masaje y Spa,Beauty & Wellness,massage,100.74,4.0,165,True
+D00458,ES,Valencia,Tratamiento de Bienestar,Beauty & Wellness,massage,98.37,4.4,17,False
+D00459,ES,Valencia,Tratamiento de Bienestar,Beauty & Wellness,massage,22.77,5.0,430,False
+D00460,ES,Valencia,Cena con Maridaje,Food & Drink,dining,44.72,3.8,387,True
+D00461,ES,Valencia,Menú Degustación,Food & Drink,dining,118.4,4.6,222,True
+D00462,ES,Valencia,Cena con Maridaje,Food & Drink,dining,67.47,4.4,304,False
+D00463,ES,Valencia,Menú de 3 Platos para Dos,Food & Drink,dining,161.6,4.5,276,False
+D00464,ES,Valencia,Experiencia Escape Room,Things To Do,activities,111.81,4.7,126,False
+D00465,ES,Valencia,Experiencia Escape Room,Things To Do,activities,78.58,4.1,199,True
+D00466,ES,Valencia,Tour Guiado,Things To Do,activities,25.66,3.8,264,True
+D00467,ES,Valencia,Sesión de Karting,Things To Do,activities,150.35,4.8,136,True
+D00468,ES,Valencia,Experiencia Escape Room,Things To Do,activities,124.96,4.7,229,True
+D00469,ES,Valencia,Tour Guiado,Things To Do,activities,108.69,4.6,184,False
+D00470,ES,Valencia,Entrenamiento Personal,Health & Fitness,fitness,65.22,4.3,323,False
+D00471,ES,Valencia,Pase de Gimnasio,Health & Fitness,fitness,95.44,4.3,48,False
+D00472,ES,Valencia,Clases Ilimitadas,Health & Fitness,fitness,44.71,4.4,130,True
+D00473,ES,Valencia,Entrenamiento Personal,Health & Fitness,fitness,110.07,3.8,50,False
+D00474,ES,Valencia,Clases Ilimitadas,Health & Fitness,fitness,34.23,3.8,217,False
+D00475,ES,Valencia,Clases Ilimitadas,Health & Fitness,fitness,17.15,4.2,139,True
+D00476,ES,Valencia,Manicura y Pedicura,Beauty & Wellness,beauty,26.77,4.5,367,True
+D00477,ES,Valencia,Manicura y Pedicura,Beauty & Wellness,beauty,115.96,4.0,264,False
+D00478,ES,Sevilla,Sesión de Masaje y Spa,Beauty & Wellness,massage,25.18,4.1,8,False
+D00479,ES,Sevilla,Sesión de Masaje y Spa,Beauty & Wellness,massage,66.49,4.8,156,False
+D00480,ES,Sevilla,Sesión de Masaje y Spa,Beauty & Wellness,massage,20.29,4.5,81,False
+D00481,ES,Sevilla,Tratamiento de Bienestar,Beauty & Wellness,massage,96.63,4.1,65,True
+D00482,ES,Sevilla,Tratamiento de Bienestar,Beauty & Wellness,massage,81.93,4.6,24,True
+D00483,ES,Sevilla,Cena con Maridaje,Food & Drink,dining,19.07,4.4,21,False
+D00484,ES,Sevilla,Menú de 3 Platos para Dos,Food & Drink,dining,39.85,4.5,152,True
+D00485,ES,Sevilla,Cena con Maridaje,Food & Drink,dining,166.69,3.5,286,True
+D00486,ES,Sevilla,Tour Guiado,Things To Do,activities,66.55,4.5,167,False
+D00487,ES,Sevilla,Sesión de Karting,Things To Do,activities,134.5,4.5,265,False
+D00488,ES,Sevilla,Experiencia Escape Room,Things To Do,activities,16.42,3.9,161,True
+D00489,ES,Sevilla,Tour Guiado,Things To Do,activities,62.11,4.2,241,False
+D00490,ES,Sevilla,Tour Guiado,Things To Do,activities,119.96,4.0,246,True
+D00491,ES,Sevilla,Experiencia Escape Room,Things To Do,activities,119.68,3.9,331,True
+D00492,ES,Sevilla,Experiencia Escape Room,Things To Do,activities,15.65,4.6,289,False
+D00493,ES,Sevilla,Pase de Gimnasio,Health & Fitness,fitness,166.25,4.2,447,False
+D00494,ES,Sevilla,Entrenamiento Personal,Health & Fitness,fitness,138.54,4.5,167,False
+D00495,ES,Sevilla,Clases Ilimitadas,Health & Fitness,fitness,119.04,4.4,177,False
+D00496,ES,Sevilla,Pase de Gimnasio,Health & Fitness,fitness,83.71,4.4,298,True
+D00497,ES,Sevilla,Clases Ilimitadas,Health & Fitness,fitness,122.54,4.5,206,False
+D00498,ES,Sevilla,Clases Ilimitadas,Health & Fitness,fitness,36.49,4.5,194,False
+D00499,ES,Sevilla,Tratamiento Facial,Beauty & Wellness,beauty,135.32,4.4,81,True
+D00500,PL,Warszawa,Zabieg Spa i Masaż,Beauty & Wellness,massage,61.76,4.2,198,True
+D00501,PL,Warszawa,Sesja Wellness,Beauty & Wellness,massage,113.49,4.0,249,True
+D00502,PL,Warszawa,Sesja Wellness,Beauty & Wellness,massage,85.77,5.0,248,True
+D00503,PL,Warszawa,Sesja Wellness,Beauty & Wellness,massage,179.28,4.7,377,True
+D00504,PL,Warszawa,Zabieg Spa i Masaż,Beauty & Wellness,massage,166.43,4.6,272,False
+D00505,PL,Warszawa,Menu Degustacyjne,Food & Drink,dining,34.61,3.9,109,True
+D00506,PL,Warszawa,Menu Degustacyjne,Food & Drink,dining,112.85,4.1,400,True
+D00507,PL,Warszawa,Kolacja z Winem,Food & Drink,dining,100.92,4.3,31,False
+D00508,PL,Warszawa,Kolacja z Winem,Food & Drink,dining,51.31,4.3,377,False
+D00509,PL,Warszawa,Menu 3-Daniowe dla Dwojga,Food & Drink,dining,92.87,4.1,790,False
+D00510,PL,Warszawa,Menu 3-Daniowe dla Dwojga,Food & Drink,dining,52.51,4.6,388,False
+D00511,PL,Warszawa,Zwiedzanie z Przewodnikiem,Things To Do,activities,106.62,4.5,389,False
+D00512,PL,Warszawa,Zwiedzanie z Przewodnikiem,Things To Do,activities,176.53,4.4,40,True
+D00513,PL,Warszawa,Zwiedzanie z Przewodnikiem,Things To Do,activities,136.01,4.1,707,False
+D00514,PL,Warszawa,Zwiedzanie z Przewodnikiem,Things To Do,activities,65.24,4.7,292,False
+D00515,PL,Warszawa,Escape Room Przygoda,Things To Do,activities,18.3,4.8,118,False
+D00516,PL,Warszawa,Tor Kartingowy,Things To Do,activities,123.78,4.8,190,True
+D00517,PL,Warszawa,Zwiedzanie z Przewodnikiem,Things To Do,activities,42.82,3.9,250,False
+D00518,PL,Warszawa,Escape Room Przygoda,Things To Do,activities,142.32,3.6,138,False
+D00519,PL,Warszawa,Zwiedzanie z Przewodnikiem,Things To Do,activities,31.35,3.8,874,True
+D00520,PL,Warszawa,Karnet na Siłownię,Health & Fitness,fitness,18.45,4.7,5,False
+D00521,PL,Warszawa,Zajęcia bez Limitu,Health & Fitness,fitness,93.67,3.7,121,False
+D00522,PL,Warszawa,Zajęcia bez Limitu,Health & Fitness,fitness,99.94,3.9,156,False
+D00523,PL,Warszawa,Zajęcia bez Limitu,Health & Fitness,fitness,37.04,4.4,320,False
+D00524,PL,Warszawa,Trening Personalny,Health & Fitness,fitness,84.22,4.2,208,False
+D00525,PL,Warszawa,Zajęcia bez Limitu,Health & Fitness,fitness,24.18,3.9,462,False
+D00526,PL,Warszawa,Manicure i Pedicure,Beauty & Wellness,beauty,28.07,4.5,84,False
+D00527,PL,Warszawa,Strzyżenie i Stylizacja,Beauty & Wellness,beauty,172.75,4.1,96,False
+D00528,PL,Warszawa,Strzyżenie i Stylizacja,Beauty & Wellness,beauty,70.99,4.0,122,True
+D00529,PL,Warszawa,Strzyżenie i Stylizacja,Beauty & Wellness,beauty,134.11,4.4,117,True
+D00530,PL,Warszawa,Zabieg na Twarz,Beauty & Wellness,beauty,67.7,4.5,41,False
+D00531,PL,Kraków,Masaż Relaksacyjny Pakiet,Beauty & Wellness,massage,124.07,3.5,259,True
+D00532,PL,Kraków,Kolacja z Winem,Food & Drink,dining,58.07,4.7,327,False
+D00533,PL,Kraków,Kolacja z Winem,Food & Drink,dining,132.3,4.4,89,False
+D00534,PL,Kraków,Zwiedzanie z Przewodnikiem,Things To Do,activities,90.6,4.7,49,True
+D00535,PL,Kraków,Zwiedzanie z Przewodnikiem,Things To Do,activities,95.67,4.0,238,True
+D00536,PL,Kraków,Zajęcia bez Limitu,Health & Fitness,fitness,107.71,5.0,34,False
+D00537,PL,Kraków,Karnet na Siłownię,Health & Fitness,fitness,48.8,4.4,189,False
+D00538,PL,Kraków,Trening Personalny,Health & Fitness,fitness,44.29,4.4,112,False
+D00539,PL,Kraków,Manicure i Pedicure,Beauty & Wellness,beauty,153.38,4.5,9,True
+D00540,PL,Kraków,Strzyżenie i Stylizacja,Beauty & Wellness,beauty,110.72,3.3,174,False
+D00541,PL,Wrocław,Zabieg Spa i Masaż,Beauty & Wellness,massage,83.84,5.0,254,True
+D00542,PL,Wrocław,Masaż Relaksacyjny Pakiet,Beauty & Wellness,massage,149.45,3.9,293,True
+D00543,PL,Wrocław,Sesja Wellness,Beauty & Wellness,massage,57.02,4.3,390,False
+D00544,PL,Wrocław,Sesja Wellness,Beauty & Wellness,massage,89.94,4.7,438,True
+D00545,PL,Wrocław,Masaż Relaksacyjny Pakiet,Beauty & Wellness,massage,144.88,4.2,192,False
+D00546,PL,Wrocław,Menu Degustacyjne,Food & Drink,dining,82.67,4.8,69,True
+D00547,PL,Wrocław,Kolacja z Winem,Food & Drink,dining,132.49,4.6,68,False
+D00548,PL,Wrocław,Kolacja z Winem,Food & Drink,dining,162.98,4.4,128,True
+D00549,PL,Wrocław,Zwiedzanie z Przewodnikiem,Things To Do,activities,13.63,3.9,83,False
+D00550,PL,Wrocław,Trening Personalny,Health & Fitness,fitness,137.32,4.5,176,False
+D00551,PL,Wrocław,Strzyżenie i Stylizacja,Beauty & Wellness,beauty,176.69,4.3,381,True
+D00552,PL,Gdańsk,Zabieg Spa i Masaż,Beauty & Wellness,massage,163.98,3.8,61,False
+D00553,PL,Gdańsk,Zabieg Spa i Masaż,Beauty & Wellness,massage,70.04,4.3,465,True
+D00554,PL,Gdańsk,Masaż Relaksacyjny Pakiet,Beauty & Wellness,massage,135.71,4.2,145,False
+D00555,PL,Gdańsk,Menu 3-Daniowe dla Dwojga,Food & Drink,dining,49.15,4.4,329,False
+D00556,PL,Gdańsk,Kolacja z Winem,Food & Drink,dining,68.25,3.9,189,False
+D00557,PL,Gdańsk,Menu Degustacyjne,Food & Drink,dining,66.08,4.6,20,False
+D00558,PL,Gdańsk,Menu Degustacyjne,Food & Drink,dining,53.83,4.3,59,True
+D00559,PL,Gdańsk,Zwiedzanie z Przewodnikiem,Things To Do,activities,17.99,4.4,200,False
+D00560,PL,Gdańsk,Escape Room Przygoda,Things To Do,activities,16.14,4.4,78,True
+D00561,PL,Gdańsk,Escape Room Przygoda,Things To Do,activities,18.8,4.3,521,True
+D00562,PL,Gdańsk,Tor Kartingowy,Things To Do,activities,46.31,4.6,54,False
+D00563,PL,Gdańsk,Escape Room Przygoda,Things To Do,activities,34.33,3.9,88,True
+D00564,PL,Gdańsk,Karnet na Siłownię,Health & Fitness,fitness,121.6,4.7,269,True
+D00565,PL,Gdańsk,Zabieg na Twarz,Beauty & Wellness,beauty,21.69,4.7,319,True
+D00566,PL,Gdańsk,Zabieg na Twarz,Beauty & Wellness,beauty,136.95,3.7,557,True
+D00567,PL,Gdańsk,Strzyżenie i Stylizacja,Beauty & Wellness,beauty,66.43,4.1,39,False
+D00568,PL,Gdańsk,Strzyżenie i Stylizacja,Beauty & Wellness,beauty,130.3,3.3,374,True

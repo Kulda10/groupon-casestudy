@@ -1,0 +1,172 @@
+
+==============================================================================
+0. DATA INTEGRITY
+==============================================================================
+searches 8997 | deals 568 | dates 2026-06-01 -> 2026-06-30
+dup ids: 0 0 | nulls: 0 0
+impossible rows (purchase w/o click / click w/o results): 0 0
+searches with results_shown == 3: 0 <- no such value exists
+query strings: 613 -> concepts: 35 | deal titles: 75 -> concepts: 11
+
+==============================================================================
+1. THE FUNNEL IS A STEP FUNCTION OF results_shown
+==============================================================================
+                   searches  share    ctr    cvr
+regime                                          
+0_none                 2633  0.293  0.000  0.000
+1_thin(1-2)            2087  0.232  0.103  0.017
+2_healthy(4-25)        3806  0.423  0.549  0.178
+3_overload(26-40)       471  0.052  0.257  0.023
+
+<=2 results: 4720 (52.5%) of all searches
+
+==============================================================================
+2. RESULT COUNT IS UNCORRELATED WITH REAL INVENTORY
+==============================================================================
+corr(results_shown, matching deals in city): all r=+0.177  non-zero only r=+0.016
+corr(results_shown, all deals in city): all r=+0.023  non-zero only r=+0.022
+
+mean results_shown by tier (non-zero searches):
+            count   mean  median
+tier                            
+A_exact      2072  11.69    11.0
+B_adjacent   3532  11.88    10.0
+C_none        760  11.85    10.0
+
+searches showing results where NO relevant deal exists in that city: 1134 (12.6%)
+searches showing ZERO results where relevant inventory DOES exist: 822 (9.1%)
+searches returning MORE results than the city has deals in total: 585 (6.5%)
+
+==============================================================================
+3. SAME QUERY, SAME CITY, DIFFERENT ANSWER EVERY TIME
+==============================================================================
+query x city groups with >=8 searches: 282
+groups returning one stable count: 0
+groups with min==0 AND max>=20: 80.1%
+median within-group std dev: 9.83 results
+
+worst offenders:
+                            size  min  max  median   std  nunique
+market city   canon                                              
+GB     London escape room     46    0   25    10.0   8.4       17
+              thai massage    45    0   39     6.0  10.7       19
+              back massage    44    0   37     9.0  10.0       20
+ES     Madrid sushi           44    0   38     8.5  11.5       20
+GB     London go karting      44    0   33    11.5   9.4       21
+              pizza deal      42    0   31     8.5   9.3       19
+              sushi           41    0   38     5.0  12.1       20
+              hair colour     40    0   31     7.5  10.2       19
+
+==============================================================================
+4. CROSS-LANGUAGE SEARCH IS THE ONE REAL SEGMENT EFFECT
+==============================================================================
+"foreign" = English query in a non-EN market where the SAME concept is also searched locally.
+            n   zero   thin  median_results    ctr    cvr
+foreign                                                  
+False    2554  0.127  0.265             8.0  0.340  0.106
+True      235  0.226  0.591             1.0  0.081  0.004
+  logit fail       (concept+market fixed effects) OR= 7.07  p=3.57e-29
+  logit clicked    (concept+market fixed effects) OR= 0.17  p=2.79e-13
+  logit purchased  (concept+market fixed effects) OR= 0.04  p=9.04e-04
+
+==============================================================================
+5. TRAP: PER-QUERY CTR/CVR DIFFERENCES ARE NOISE
+==============================================================================
+Within the healthy 4-25 band, does anything except the result count predict outcome?
+  market     CTR chi2 p=0.173   CVR chi2 p=0.222
+  city       CTR chi2 p=0.234   CVR chi2 p=0.705
+  concept    CTR chi2 p=0.096   CVR chi2 p=0.892
+  tier       CTR chi2 p=0.819   CVR chi2 p=0.849
+  langstat   CTR chi2 p=0.182   CVR chi2 p=0.346
+  qtype      CTR chi2 p=0.017   CVR chi2 p=0.003  <- survives
+  foreign    CTR chi2 p=0.000   CVR chi2 p=0.095  <- survives
+
+Market zero-rate differences, once no-supply queries are excluded:
+  by market chi2 p= 0.113  by city chi2 p= 0.184
+
+==============================================================================
+6. SUPPLY vs DEMAND
+==============================================================================
+                   searches  deals
+concept                           
+skydive                 389      0
+helicopter              377      0
+balloon                 375      0
+massage_back            370      0
+facial                  325     39
+crossfit                322      0
+massage_thai            321      0
+massage_couples         318      0
+karting                 313     25
+rafting                 312      0
+brunch                  309      0
+gym                     308     33
+haircut                 307     34
+escape_room             301     51
+hair_colour             301      0
+eyelash                 298      0
+personal_training       298     39
+pilates                 296      0
+yoga                    295      0
+paintball               292      0
+sushi                   284      0
+bowling                 275      0
+city_tour               274     56
+massage_sport           263      0
+manicure                258     35
+massage_deep            186      0
+burger                  182      0
+steak                   167      0
+pizza                   131      0
+italian                 113      0
+tapas                   106      0
+indian                  102      0
+supercar                 97      0
+shark                    89      0
+creperie                 43      0
+classes                   0     48
+dining_generic            0    100
+massage_generic           0    108
+
+concepts customers search that have ZERO exact inventory: 27 | searches: 6613 (73.5%)
+high-ticket adventure demand with zero inventory: 1639 (18.2%) - always 0 results, 0 clicks, 0 revenue
+inventory nobody searches by name (generic package titles): 256 of 568 deals
+price ceiling in catalogue: $ 179.46  (no inventory above $180)
+
+==============================================================================
+7. CATALOGUE QUALITY
+==============================================================================
+                   deals  unique_titles  repeats_per_title
+market city                                               
+GB     London         69             15               4.60
+ES     Madrid         49             13               3.77
+FR     Paris          56             15               3.73
+DE     Berlin         48             14               3.43
+GB     Birmingham     27             10               2.70
+DE     Köln           29             12               2.42
+
+max identical titles in one city: 8
+instant-bookable share: GB 0.759 vs rest 0.487 | chi2 p= 1.30e-07
+deals rated below 4.0: 116 (20.4%)
+
+==============================================================================
+8. TYPOS
+==============================================================================
+          n   zero  median_results    ctr    cvr
+qtype                                           
+exact  6099  0.137             7.0  0.330  0.101
+typo    394  0.140             8.0  0.284  0.063
+zero-rate difference chi2 p= 0.933 <- typos are NOT under-served on count
+within healthy 4-25 band: exact CVR 0.183 vs typo CVR 0.105
+
+==============================================================================
+9. REVENUE AT STAKE (proxy: city median deal price)
+==============================================================================
+observed purchases 723 | est. revenue $67,325 for the month
+  zero results   n= 2633  cvr=0.0000  missed purchases=  468  est. $44,194
+  1-2 results    n= 2087  cvr=0.0168  missed purchases=  336  est. $31,727
+  26-40 results  n=  471  cvr=0.0234  missed purchases=   73  est. $6,868
+total recoverable if every search behaved like the healthy band: $82,788 (123% on top of current)
+
+CAVEAT: search_log has no deal_id, so revenue is a proxy using the city median price
+and assumes the healthy-band conversion rate is achievable. Directional, not a forecast.

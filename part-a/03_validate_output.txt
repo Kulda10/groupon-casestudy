@@ -1,0 +1,547 @@
+/sessions/rcw-01bczv37werfmbarsxy5nswg/mnt/Groupon/v2/03_validate.py:84: FutureWarning: The default of observed=False is deprecated and will be changed to True in a future version of pandas. Pass observed=False to retain current behavior or observed=True to adopt the future default and silence this warning.
+  sub = hb.groupby(pd.cut(hb.results_shown,[3,9,15,20,25])).agg(n=('query_id','size'),cvr=('purchased','mean'))
+/sessions/rcw-01bczv37werfmbarsxy5nswg/.local/lib/python3.10/site-packages/statsmodels/discrete/discrete_model.py:268: ConvergenceWarning: Maximum Likelihood optimization failed to converge. Check mle_retvals
+  mlefit = super().fit(
+/sessions/rcw-01bczv37werfmbarsxy5nswg/.local/lib/python3.10/site-packages/statsmodels/discrete/discrete_model.py:268: ConvergenceWarning: Maximum Likelihood optimization failed to converge. Check mle_retvals
+  mlefit = super().fit(
+/sessions/rcw-01bczv37werfmbarsxy5nswg/.local/lib/python3.10/site-packages/statsmodels/discrete/discrete_model.py:268: ConvergenceWarning: Maximum Likelihood optimization failed to converge. Check mle_retvals
+  mlefit = super().fit(
+/sessions/rcw-01bczv37werfmbarsxy5nswg/.local/lib/python3.10/site-packages/statsmodels/discrete/discrete_model.py:268: ConvergenceWarning: Maximum Likelihood optimization failed to converge. Check mle_retvals
+  mlefit = super().fit(
+
+==============================================================================
+1. INTEGRITY
+==============================================================================
+searches 8997 | deals 568
+nulls search 0 | nulls deals 0
+dup query_id 0 | dup deal_id 0
+purchased without click: 0
+clicked with 0 results  : 0
+date range 2026-06-01 -> 2026-06-30 | days 30
+markets ['DE', 'ES', 'FR', 'GB', 'PL'] | cities 20
+search cities not in deals: set()
+
+==============================================================================
+2. GENERATOR FORENSICS — was results_shown drawn at random?
+==============================================================================
+
+regime shares:
+regime
+0_zero        29.27
+1_thin        23.20
+2_healthy     42.30
+3_overload     5.24
+
+missing integers in 0..40: [3]
+uniform within 1-2? n=2087 chi2 p=0.948  (high p = indistinguishable from uniform)
+uniform within 4-25? n=3806 chi2 p=0.034  (high p = indistinguishable from uniform)
+uniform within 26-40? n=471 chi2 p=0.790  (high p = indistinguishable from uniform)
+
+==============================================================================
+2b. Does the REGIME depend on market / city / weekday / catalogue size?
+==============================================================================
+market   chi2 p = 0.001782
+city     chi2 p = 0.2334
+weekday  chi2 p = 0.2364
+corr(city catalogue size, results_shown), non-zero only: r = 0.0217
+searches returning MORE results than the city holds deals: 585 (6.5%)
+
+==============================================================================
+2c. Is the OUTCOME a pure function of the result count?
+==============================================================================
+               n   ctr   cvr
+regime                      
+0_zero      2633   0.0   0.0
+1_thin      2087  10.3   1.7
+2_healthy   3806  54.9  17.8
+3_overload   471  25.7   2.3
+
+Inside the healthy band only (4-25), does anything still predict a purchase?
+  market   chi2 p = 0.2215  (high p = no real difference)
+  city     chi2 p = 0.7052  (high p = no real difference)
+  dow      chi2 p = 0.3498  (high p = no real difference)
+  corr(results_shown, purchased) inside 4-25: r = -0.0281
+                  n   cvr
+results_shown            
+(3, 9]          940  19.8
+(9, 15]        1052  17.1
+(15, 20]        889  17.0
+(20, 25]        925  17.3
+
+==============================================================================
+3. INDEPENDENT TAXONOMY — built from raw strings, not reusing part_a.py
+==============================================================================
+queries mapped to a catalogue category: 8569 (95.2%)
+unmapped raw queries: ['aaroceria', 'arrocerea', 'arroceriia', 'arrocerria', 'arroeria', 'back masoage', 'boeling', 'boling', 'boowling', 'bowing', 'bowlig', 'bowliing', 'bowlinng', 'bowlng', 'bowlong', 'bowuing', 'branch', 'brnch', 'brrunch', 'brunah']
+l2
+activities    2943
+fitness       1443
+beauty        1424
+massage       1424
+dining        1335
+None           428
+
+==============================================================================
+3b. ROBUSTNESS OF r — three independent definitions of "matching inventory"
+==============================================================================
+A) coarse 5-category map, non-zero searches : r = +0.010  (n=6364)
+   same, ALL searches incl. zeroes           : r = -0.015
+B) total deals in city, non-zero searches    : r = +0.022
+C) per-city: median results returned vs deals the city actually holds
+   r = +0.266 across 20 cities
+            med  deals
+city                  
+Kraków      2.0     10
+Wrocław     2.0     11
+Gdańsk      2.0     17
+Marseille   2.0     19
+Manchester  2.0     19
+Valencia    2.0     21
+Lyon        2.0     21
+Hamburg     2.0     21
+Sevilla     2.0     22
+Barcelona   2.0     22
+München     2.0     24
+Glasgow     2.0     26
+Toulouse    2.0     26
+Birmingham  6.0     27
+Köln        2.0     29
+Warszawa    2.0     31
+Berlin      2.0     48
+Madrid      2.0     49
+Paris       2.0     56
+London      4.0     69
+
+==============================================================================
+4. IS ZERO-RESULT RELATED TO REAL ABSENCE OF STOCK?
+==============================================================================
+            n  zero
+has_inv            
+False     428  29.2
+True     8569  29.3
+
+zero-rate by catalogue category (all five ARE stocked in every city):
+               n  inv_med  zero
+l2                             
+activities  2943      9.0  58.6
+beauty      1424      8.0  14.4
+dining      1335      7.0  14.6
+fitness     1443      7.0  13.0
+massage     1424      5.0  13.8
+
+high-ticket searches: 1565 (17.4%)  zero-rate 100.0%  clicks 0  purchases 0
+deals in catalogue matching those words: 0
+price ceiling of entire catalogue: $179.46  | median $91.83
+price distribution deciles: [12.6, 25.8, 42.9, 57.3, 72.4, 91.8, 108.7, 126.4, 144.4, 161.9, 179.5]
+
+zero-rate EXCLUDING high-ticket (i.e. only things the catalogue could serve):
+  14.4%  on n=7432
+  of those zeroes, how many had matching stock in the city? 943
+
+==============================================================================
+5. TRAP TEST — is any market/city really worse?
+==============================================================================
+raw zero-rate by market:
+market
+DE    26.9
+ES    29.6
+FR    30.1
+GB    28.8
+PL    32.6
+
+after removing high-ticket (the no-supply demand):
+market
+DE    12.6
+ES    15.8
+FR    16.0
+GB    13.0
+PL    15.2
+  chi2 market p = 0.01009
+  chi2 city   p = 0.06121
+
+==============================================================================
+5b. THE TRAP, TESTED PROPERLY — market effect with query mix held constant
+==============================================================================
+distinct canonical queries: 128 | typo rows: 590
+
+Likelihood-ratio test, market on top of query identity: chi2=24.24 df=4 p=7.159e-05
+  -> low p means market still matters once you compare like with like
+same test, high-ticket removed:  chi2=24.24 df=4 p=7.159e-05
+
+queries searched >=20 times in ALL five markets: 5
+market       DE    ES    FR    GB    PL
+qcanon                                 
+brunch     12.7  16.2  12.7  13.9  13.9
+crossfit   19.4  19.8  17.2   8.1  20.8
+paintball   6.8  11.1   9.8   7.6  10.7
+pilates    10.9  16.4  12.1   3.9  20.6
+sushi      24.4  14.6   7.8  15.2  16.1
+
+Wilcoxon PL vs DE on those paired queries: n too small
+mean zero-rate across those paired queries:
+market
+DE    14.8
+ES    15.6
+FR    11.9
+GB     9.8
+PL    16.4
+
+==============================================================================
+5c. WHICH market, and is it real? (the page calls this a trap — checking)
+==============================================================================
+language-neutral queries: ['bowling', 'brunch', 'city tour', 'couples massage', 'crossfit', 'deep tissue massage', 'escape room', 'facial', 'go karting', 'gym', 'hair colour', 'haircut', 'manicure', 'paintball', 'personal trainer', 'pilates', 'pizza deal', 'sports massage', 'steak dinner', 'sushi', 'thai massage', 'yoga class']
+rows: 3620
+
+n per cell:
+market               DE  ES  FR   GB  PL
+qcanon                                  
+bowling              67   5  60   77   2
+brunch               63  68  63   79  36
+city tour             4   5   4   78   2
+couples massage       1   8   8   74   2
+crossfit             67  81  64   86  24
+deep tissue massage  11   8   6   84   5
+escape room          59  66   5   93  22
+facial                4   7   4   89   5
+go karting            5   5   4   79   4
+gym                   9   3   8   88   1
+hair colour           3   3   3   88   4
+haircut               3   7   8   85   2
+manicure              3   5   4   77  24
+paintball            44  54  61  105  28
+personal trainer     66   6  10   77   4
+pilates              55  73  58   76  34
+pizza deal            3   4   6   90   5
+sports massage        5  10   4   78   4
+steak dinner          3   5   8   93   4
+sushi                41  82  51   79  31
+thai massage         47   6   8   80   4
+yoga class            5   5   5   80   2
+
+zero-rate %:
+market                 DE    ES    FR    GB     PL
+qcanon                                            
+bowling               7.5  20.0  20.0  13.0  100.0
+brunch               12.7  16.2  12.7  13.9   13.9
+city tour             0.0   0.0  25.0   9.0    0.0
+couples massage       0.0  37.5  12.5  17.6    0.0
+crossfit             19.4  19.8  17.2   8.1   20.8
+deep tissue massage  18.2  50.0  50.0  16.7    0.0
+escape room          13.6   7.6   0.0  11.8    9.1
+facial                0.0  42.9  25.0  13.5   20.0
+go karting           20.0   0.0  25.0  10.1   25.0
+gym                   0.0   0.0  50.0  10.2    0.0
+hair colour           0.0  66.7  66.7  14.8   25.0
+haircut               0.0  28.6  12.5  11.8  100.0
+manicure              0.0  20.0  50.0  10.4   12.5
+paintball             6.8  11.1   9.8   7.6   10.7
+personal trainer     10.6  16.7  20.0  16.9   25.0
+pilates              10.9  16.4  12.1   3.9   20.6
+pizza deal            0.0  25.0  33.3  15.6   20.0
+sports massage        0.0  10.0  25.0  15.4   25.0
+steak dinner          0.0  40.0  50.0  16.1   50.0
+sushi                24.4  14.6   7.8  15.2   16.1
+thai massage         12.8  33.3  25.0  12.5   25.0
+yoga class           20.0  20.0  20.0  12.5    0.0
+
+pooled zero-rate by market on language-neutral queries only:
+           n  zero
+market            
+DE       568  12.3
+ES       516  16.7
+FR       452  16.8
+GB      1835  12.5
+PL       249  17.3
+chi2 across 5 markets p = 0.01197
+GB 12.5% (n=1835) vs rest 15.4% (n=1785) -> chi2 p = 0.01446
+
+same language-neutral rows, full funnel by market:
+           n  zero  thin   ctr   cvr
+market                              
+DE       568  12.3  35.7  27.8   7.0
+ES       516  16.7  32.9  28.9   9.5
+FR       452  16.8  31.6  29.6   8.0
+GB      1835  12.5  25.6  35.5  10.3
+PL       249  17.3  37.8  24.5   6.8
+
+==============================================================================
+5d. Does the market effect survive city, and is GB special or is ENGLISH special?
+==============================================================================
+LR market | query, neutral queries only: chi2=20.63 df=4 p=0.0003743
+LR city   | query, neutral queries only: chi2=32.37 df=19 p=0.0284
+
+==============================================================================
+5e. IS IT MARKET, OR IS IT LANGUAGE? (the neutral-query set is GB-heavy on purpose)
+==============================================================================
+true loanwords (searched in proportion to market size everywhere): ['brunch', 'crossfit', 'paintball', 'pilates', 'sushi']
+rows: 1503
+          n  zero   ctr   cvr
+market                       
+DE      270  14.8  29.3   7.4
+ES      358  15.9  31.0  11.2
+FR      297  12.1  36.0  10.1
+GB      425   9.6  36.9  10.1
+PL      153  16.3  28.8   9.2
+chi2 market on loanwords only p = 0.0562
+LR market | query, loanwords only: chi2=8.35 df=4 p=0.07942
+  -> HIGH p here means: no market is worse. The apparent market effect was language.
+
+==============================================================================
+5f. THE CROSS-LANGUAGE FINDING, rebuilt independently
+==============================================================================
+   market         cat  n_for  zero_for  n_nat  zero_nat  buys_for  cvr_nat
+0      DE  activities     67     0.134    435     0.674         5    0.041
+1      DE      beauty     17     0.059    245     0.143         0    0.090
+2      DE      dining     12     0.167    152     0.079         0    0.125
+3      DE     fitness     14     0.071    175     0.114         0    0.120
+4      DE     massage     65     0.123    205     0.107         3    0.088
+5      ES  activities     74     0.068    341     0.742         8    0.023
+6      ES      beauty     27     0.296    293     0.154         0    0.137
+7      ES      dining     15     0.333    146     0.137         0    0.116
+8      ES     fitness      8     0.125    127     0.087         0    0.102
+9      ES     massage     45     0.311    283     0.127         0    0.124
+10     FR  activities     13     0.154    390     0.649         0    0.038
+11     FR      beauty     24     0.250    262     0.145         0    0.076
+12     FR      dining     17     0.412     80     0.188         0    0.088
+13     FR     fitness     13     0.385    136     0.118         0    0.088
+14     FR     massage     33     0.273    249     0.116         1    0.104
+15     PL  activities     27     0.111    260     0.750         1    0.015
+16     PL      beauty     33     0.212    108     0.111         2    0.111
+17     PL      dining      9     0.333     18     0.111         0    0.167
+18     PL     fitness      3     0.000     72     0.125         0    0.125
+19     PL     massage     15     0.133    137     0.153         0    0.131
+
+foreign worse in 12 of 20 market-category cells; sign test p = 0.252
+foreign-language searches: n=538 zero=18.2% <=2 =66.4% ctr=18.6% cvr=3.72% purchases=20
+native-language searches : n=6347 zero=32.9% <=2 =53.0% ctr=26.6% cvr=8.10% purchases=514
+
+==============================================================================
+5g. CROSS-LANGUAGE, rebuilt at the right grain with MY OWN translation pairs
+==============================================================================
+/sessions/rcw-01bczv37werfmbarsxy5nswg/.local/lib/python3.10/site-packages/statsmodels/discrete/discrete_model.py:268: ConvergenceWarning: Maximum Likelihood optimization failed to converge. Check mle_retvals
+  mlefit = super().fit(
+/sessions/rcw-01bczv37werfmbarsxy5nswg/.local/lib/python3.10/site-packages/statsmodels/discrete/discrete_model.py:268: ConvergenceWarning: Maximum Likelihood optimization failed to converge. Check mle_retvals
+  mlefit = super().fit(
+/sessions/rcw-01bczv37werfmbarsxy5nswg/.local/lib/python3.10/site-packages/statsmodels/discrete/discrete_model.py:268: ConvergenceWarning: Maximum Likelihood optimization failed to converge. Check mle_retvals
+  mlefit = super().fit(
+   market               intent  n_for  n_nat  fail_for  fail_nat  med_for  med_nat  buy_for  cvr_nat
+0      ES         thai massage      6     76     0.833     0.487      2.0      4.0        0    0.132
+1      FR         thai massage      8     63     0.750     0.349      2.0     10.0        0    0.127
+2      PL         thai massage      4     37     0.750     0.514      2.0      2.0        0    0.216
+3      DE         back massage      2     46     1.000     0.304      1.5      9.5        0    0.043
+4      ES         back massage     13     70     0.692     0.271      2.0     13.0        0    0.143
+5      FR         back massage      7     58     1.000     0.483      1.0      4.5        0    0.069
+6      DE       sports massage      5     60     0.600     0.417      2.0      9.5        0    0.083
+7      FR       sports massage      4     68     0.750     0.279      1.5     11.0        0    0.088
+8      PL       sports massage      4     34     1.000     0.471      2.0      5.5        0    0.059
+9      DE      couples massage      1     41     1.000     0.317      1.0     10.0        0    0.073
+10     ES      couples massage      8     70     0.750     0.414      1.0      6.0        0    0.171
+11     FR      couples massage      8     74     0.500     0.378      5.0      7.0        1    0.108
+12     PL      couples massage      2     40     0.500     0.325     15.0     10.0        0    0.125
+13     ES  deep tissue massage      8     72     0.875     0.375      0.5     10.0        0    0.042
+14     DE              haircut      3     48     1.000     0.396      1.0      6.0        0    0.125
+15     ES              haircut      7     67     1.000     0.403      1.0      6.0        0    0.045
+16     FR              haircut      8     56     0.875     0.268      1.0      9.5        0    0.071
+17     PL              haircut      2     31     1.000     0.548      0.0      2.0        0    0.032
+18     DE          hair colour      3     50     1.000     0.460      2.0      5.5        0    0.040
+19     ES          hair colour      3     62     1.000     0.419      0.0      8.0        0    0.177
+20     FR          hair colour      3     56     1.000     0.429      0.0      7.0        0    0.107
+21     PL          hair colour      4     29     1.000     0.483      1.5      5.0        0    0.103
+22     DE             manicure      3     51     0.667     0.333      2.0     11.0        0    0.137
+23     ES             manicure      5     49     0.600     0.490      1.0      4.0        0    0.184
+24     FR             manicure      4     44     0.750     0.364      0.5     10.5        0    0.023
+25     DE               facial      4     56     1.000     0.411      1.0      7.0        0    0.089
+26     ES               facial      7     71     0.857     0.338      1.0     13.0        0    0.183
+27     FR               facial      4     63     1.000     0.381      1.0     12.0        0    0.079
+28     PL               facial      5     24     1.000     0.333      2.0      8.5        0    0.208
+29     DE   eyelash extensions      4     50     1.000     0.440      1.5      7.0        0    0.080
+30     ES   eyelash extensions      5     56     1.000     0.500      1.0      3.0        0    0.089
+31     FR   eyelash extensions      5     60     0.200     0.367     19.0     11.0        0    0.067
+32     DE                  gym      9     53     0.667     0.491      2.0      4.0        0    0.094
+33     ES                  gym      3     58     1.000     0.397      1.0     10.5        0    0.121
+34     FR                  gym      8     64     0.875     0.453      0.5      5.0        0    0.062
+35     PL                  gym      1     23     1.000     0.391      1.0      8.0        0    0.174
+36     ES     personal trainer      6     61     0.667     0.295      1.5      9.0        0    0.115
+37     FR     personal trainer     10     43     0.700     0.512      2.0      2.0        0    0.140
+38     DE           yoga class      5     59     1.000     0.390      1.0      8.0        0    0.169
+39     ES           yoga class      5     72     1.000     0.361      1.0      8.0        0    0.097
+40     FR           yoga class      5     44     0.800     0.295      2.0     11.0        0    0.091
+41     PL           yoga class      2     23     0.500     0.391     16.5      8.0        0    0.087
+42     FR          escape room      5     56     1.000     0.518      1.0      2.0        0    0.107
+43     DE           go karting      5     66     0.800     0.258      2.0     11.5        0    0.106
+44     ES           go karting      5     55     0.600     0.364      2.0     10.0        0    0.127
+45     FR           go karting      4     64     1.000     0.422      1.5      7.0        0    0.078
+46     PL           go karting      4     29     0.750     0.345      2.0      7.0        0    0.138
+47     DE            city tour      4     42     0.500     0.429     14.0      4.0        0    0.119
+48     ES            city tour      5     56     0.800     0.339      2.0      9.0        0    0.125
+49     FR            city tour      4     55     0.750     0.455      1.5      7.0        0    0.091
+50     PL            city tour      2     25     1.000     0.520      1.5      2.0        0    0.000
+51     ES              bowling      5     48     0.800     0.438      1.0      5.0        1    0.042
+52     PL              bowling      2     15     1.000     0.333      0.0     10.0        0    0.000
+53     DE         steak dinner      3     54     1.000     0.426      1.0      6.0        0    0.074
+54     PL           pizza deal      5     22     0.800     0.318      1.0      9.0        0    0.227
+
+CELLS: 55 | foreign worse in 54, tied 0, better in 1
+sign test p = 1.55e-15
+
+foreign: n=266  <=2 results 81.2%  median 1  ctr 8.3%  purchases 2  cvr 0.75%
+local  : n=2819  <=2 results 39.5%  median 8  ctr 33.8%  purchases 293  cvr 10.39%
+2x2 chi2 p = 5.7e-39 | odds ratio = 6.61
+
+==============================================================================
+5h. RESOLUTION — does the market effect disappear once language is accounted for?
+==============================================================================
+language adds over query   : chi2= 14.03 df=1 p=0.0001801
+market adds over query+lang: chi2= 12.33 df=4 p=0.01503
+
+-> if market p is now high, "Poland is worst" was the language effect wearing a flag
+
+==============================================================================
+6. TRAP 01 — does any concept/query really convert better inside the healthy band?
+==============================================================================
+queries with >=30 healthy-band searches: 53
+chi2 across those queries p = 0.5944
+
+worst 5 and best 5 by CVR (the ranking that looks like a finding):
+                           n   cvr
+qcanon                            
+masaje descontracturante  40   7.5
+coiffeur                  38   7.9
+peluqueria                36   8.3
+couples massage           44   9.1
+salle de sport            31   9.7
+masaje tailandes          35  25.7
+yoga kurs                 30  26.7
+masaje en pareja          40  30.0
+sports massage            46  30.4
+limpieza facial           42  31.0
+spread 7.5% -> 31.0%. Simulating: if every query had the pooled rate 17.8%,
+  a spread of 23.5pp or more happens by pure chance 77.0% of the time.
+
+==============================================================================
+7. TRAP 03 — CTR as a relevance signal
+==============================================================================
+                    n   ctr  zero   cvr
+qcanon                                 
+tour ciudad        56  48.2  10.7  12.5
+yoga kurs          59  45.8  11.9  16.9
+italiener          55  45.5   9.1  16.4
+masaje en pareja   70  42.9  18.6  17.1
+burger            127  41.7  11.8  10.2
+paintball         292  41.4   8.9  10.3
+limpieza facial    71  40.8  12.7  18.3
+tinte pelo         62  40.3  17.7  17.7
+
+CTR among searches that returned something, paintball vs all: 45.5% vs 38.1%
+paintball deals in catalogue: 0
+/sessions/rcw-01bczv37werfmbarsxy5nswg/.local/lib/python3.10/site-packages/statsmodels/discrete/discrete_model.py:268: ConvergenceWarning: Maximum Likelihood optimization failed to converge. Check mle_retvals
+  mlefit = super().fit(
+/sessions/rcw-01bczv37werfmbarsxy5nswg/.local/lib/python3.10/site-packages/statsmodels/discrete/discrete_model.py:268: ConvergenceWarning: Maximum Likelihood optimization failed to converge. Check mle_retvals
+  mlefit = super().fit(
+/sessions/rcw-01bczv37werfmbarsxy5nswg/.local/lib/python3.10/site-packages/statsmodels/discrete/discrete_model.py:268: ConvergenceWarning: Maximum Likelihood optimization failed to converge. Check mle_retvals
+  mlefit = super().fit(
+
+==============================================================================
+5i. So how big IS the residual market effect, and what is it?
+==============================================================================
+logit coefficients, market (ref = DE), controlling for query identity and language:
+  .ES OR=1.40  95% CI 1.00-1.96
+  .FR OR=1.43  95% CI 1.02-2.00
+  .GB OR=0.91  95% CI 0.67-1.24
+  .PL OR=1.46  95% CI 0.98-2.18
+
+add city catalogue size as a control — is it inventory depth rather than nationality?
+  city size alone: OR per doubling = 0.96 p=0.4412
+  market on top of query+lang+city size: chi2=11.81 df=4 p=0.01884
+
+GB vs rest, controlling for query + language:
+  GB OR = 0.73 p = 0.01195
+  practical size: predicted zero-rate GB 27.3% vs non-GB 30.2%
+
+==============================================================================
+8. REVENUE — the weakest number, given as an interval
+==============================================================================
+observed revenue proxy      : $67,325  (723 purchases)
+healthy-band CVR            : 17.8%
+failing searches (<=2)      : 4,720  currently 35 purchases
+extra purchases if all healed: 805  -> $74,332 at mean city median price
+bootstrap 95% interval on the recoverable amount: $69,556 - $80,175
+NOTE: interval covers sampling noise ONLY. It does not cover the two real assumptions —
+      that median city price is the right proxy, and that every failing search could be healed.
+      Those are unfalsifiable with this data. Treat as an order of magnitude.
+
+==============================================================================
+9. THE REMAINING FINDINGS, 7-15
+==============================================================================
+F9  results returned > deals the city holds in total: 585 (6.5%)
+    Kraków holds 10 deals; searches there returned up to 35 | over-count rows: 61 of 168
+F10 overload band 26-40: 471 CTR 25.7% CVR 2.3% | vs healthy CVR 17.8%
+F11 catalogue duplication: titles vs deals = 75 titles for 568 deals -> 7.6x
+    London: 69 deals under 15 titles; most repeated title appears 8 times in one city
+F12 typos: 590 (6.6%)
+    healthy-band CVR clean 18.2% vs typo 11.5%  chi2 p = 0.009916
+    zero-rate clean 29.1% vs typo 31.9%  chi2 p = 0.1649
+F13 instant booking by market:
+        size  mean
+market            
+DE       122  48.4
+ES       114  43.0
+FR       122  57.4
+GB       141  75.9
+PL        69  43.5
+    GB 76% vs rest 49%  chi2 p = 3.176e-08
+F14 deals rated below 4.0: 116 (20.4%) | min rating 3.1 | median 4.3
+F15 deals whose title is supplier language, not a searchable thing: 159 of 568
+    catalogue title count: 75 | distinct customer queries (canonical): 128
+F7  searches returning results where NOTHING in that city matches the coarse category: 303
+F8  zero results although the coarse category IS stocked in that city: 2508
+
+==============================================================================
+10. HEADLINE CANDIDATES — ranked by how self-evident they are without statistics
+==============================================================================
+  29.3% of searches return nothing at all                      [counts only]
+  52.5% return two results or fewer                            [counts only]
+  6.5% return more results than the city has deals             [counts only]
+  17.4% of searches ask for something the catalogue has none of [keyword only]
+  0 of 282 repeated query+city pairs give a stable answer      [counts only]
+  paintball: 292 searches, 0 deals, median 9 results returned  [counts only]
+  foreign-language: 266 searches, 2 purchases                  [counts only]
+
+==============================================================================
+11. STABILITY — recompute finding 3 independently
+==============================================================================
+query+city pairs with >=8 searches: 411
+pairs where every search returned the same count: 74
+pairs that hit both 0 and 20+: 270 (65.7%)
+median spread (max-min): 28.0
+
+==============================================================================
+11b. Those 74 "stable" pairs — are they real stability or always-zero?
+==============================================================================
+stable pairs: 74 | of which always ZERO results: 74
+stable pairs with a non-zero constant answer: 0
+  -> none. Every "stable" pair is a query the catalogue cannot serve at all.
+
+Among pairs that ever return something (n=337):
+  stable: 0 | hitting both 0 and 20+: 270 (80.1%)
+  median spread: 31.0
+
+==============================================================================
+12. TWO NUMBERS ON THE PAGE I COULD NOT REPRODUCE
+==============================================================================
+a) "paintball has the HIGHEST click-through rate of any concept, 45.5%"
+   highest-CTR concepts overall: tour ciudad 48.2%, yoga kurs 45.8%, italiener 45.5%, masaje en pareja 42.9%
+   paintball rank: 6 of 80 at 41.4%
+   -> claim is true only when restricted to searches that returned >=1 result. Must say so.
+
+b) "1,639 high-ticket searches (18.2%)"
+   strict keyword match: 1565 (17.4%)
+   after folding misspellings into canonical form: 1639 (18.2%)
+   -> the difference is typo variants. Both defensible; state which one.
+
+c) "48 of 48 market-and-intent cells"
+   my independent pairing: 54 of 55. Direction identical, unanimity is inclusion-dependent.
+
+==============================================================================
+DONE
+==============================================================================

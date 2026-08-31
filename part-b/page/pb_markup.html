@@ -1,0 +1,74 @@
+<div class="pb-shell">
+  <div class="pb-frame" id="pb">
+    <div class="pb-chrome" aria-hidden="true">
+      <i class="pb-dot"></i><i class="pb-dot"></i><i class="pb-dot"></i>
+      <span class="pb-url" id="pb-url">groupon.co.uk / search</span>
+    </div>
+
+    <div class="pb-head">
+      <img class="pb-logo" id="pb-logo" alt="Groupon">
+      <form class="pb-form" id="pb-form" role="search">
+        <div class="pb-search">
+          <input id="pb-q" type="search" autocomplete="off" spellcheck="false"
+                 aria-label="Search deals" placeholder="Search for something — anything">
+          <button type="button" class="pb-x" id="pb-clear" aria-label="Clear the search field">&times;</button>
+          <button type="submit" class="pb-go" aria-label="Search">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+          </button>
+        </div>
+      </form>
+      <button class="pb-loc" id="pb-loc" aria-expanded="false" aria-controls="pb-cities">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C8.7 2 6 4.7 6 8c0 4.5 6 14 6 14s6-9.5 6-14c0-3.3-2.7-6-6-6zm0 8.5A2.5 2.5 0 1 1 12 5.5a2.5 2.5 0 0 1 0 5z"/></svg>
+        <b id="pb-locname">London, United Kingdom</b> · <span class="pb-chg">Change</span>
+      </button>
+    </div>
+
+    <div class="pb-tryrow">
+      <button type="button" class="pb-try" id="pb-try">↻ Try a real query</button>
+      <span class="pb-trynote" id="pb-trynote">8,997 searches, 1,308 distinct query-and-city pairs.
+      Each one arrives with its row id, so you can find it in <code>search_log.csv</code> yourself.</span>
+    </div>
+
+    <div class="pb-cities" id="pb-cities" hidden>
+      <h4>Five markets, twenty cities — every count is the real size of that catalogue</h4>
+      <div class="pb-allrow" id="pb-allrow"></div>
+      <div class="pb-mkts" id="pb-mkts"></div>
+    </div>
+
+    <div class="pb-chips" id="pb-chips" role="tablist" aria-label="Eleven kinds of query"></div>
+
+    <div class="pb-resp" id="pb-resp" role="status" aria-live="polite"></div>
+    <div class="pb-more-lines" id="pb-lines"></div>
+
+    <div class="pb-panes">
+      <div class="pb-pane pb-p-today" id="pb-pane-today">
+        <button class="pb-mobtoggle" id="pb-mobtoggle" type="button">Show what happens today</button>
+        <span class="pb-plab pb-a">Old</span>
+        <div class="pb-box pb-a" id="pb-today"></div>
+      </div>
+      <div class="pb-pane pb-p-prop">
+        <span class="pb-plab pb-b">New</span>
+        <div class="pb-box pb-b" id="pb-prop"></div>
+      </div>
+    </div>
+
+    <div class="pb-morebar">
+      <button type="button" class="pb-moretoggle" id="pb-moretoggle" aria-expanded="false"
+              aria-controls="pb-more">Show more information <span aria-hidden="true">⌄</span></button>
+    </div>
+
+    <div id="pb-more" hidden>
+      <div class="pb-behaviour" id="pb-behaviour"></div>
+      <div class="pb-coverage" id="pb-coverage"></div>
+    </div>
+
+    <div class="pb-limits">
+      <span><b>No deal_id in the log</b> — the Today pane replays counts, never the actual results</span>
+      <span><b>No user_id or session</b> — no journeys, no personalisation</span>
+      <span><b>No ranking data</b> — the Proposed order is a defensible choice, not a reproduction</span>
+      <span><b>No coordinates</b> — “nearest city” means the same market, not the closest one</span>
+      <span><b>Prices labelled USD</b> across five non-US markets — shown as given</span>
+      <span><b>75 titles for 568 deals</b> — many matches are necessarily category-level, and say so</span>
+    </div>
+  </div>
+</div>

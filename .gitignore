@@ -1,0 +1,5 @@
+# build_page.py keeps a backup of the page beside it; it is not part of the submission
+index.html.bak
+.DS_Store
+__pycache__/
+part-b/preview.html

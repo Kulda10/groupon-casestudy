@@ -1,0 +1,378 @@
+
+==========================================================================
+1. THE TWO FILES
+==========================================================================
+
+search_log.csv: 8,997 rows x 8 columns
+                dtype  nulls  unique      example
+query_id       object      0    8997      Q000001
+market         object      0       5           GB
+city           object      0      20       London
+raw_query      object      0     613  hair colour
+results_shown   int64      0      40            1
+clicked         int64      0       2            0
+purchased       int64      0       2            0
+date           object      0      30   2026-06-06
+
+deals.csv: 568 rows x 10 columns
+               dtype  nulls  unique                  example
+deal_id       object      0     568                   D00001
+market        object      0       5                       GB
+city          object      0      20                   London
+title         object      0      75  Spa & Massage Treatment
+category_l1   object      0       4        Beauty & Wellness
+category_l2   object      0       5                  massage
+price_usd    float64      0     560                   176.17
+rating       float64      0      20                     4.20
+num_ratings    int64      0     344                      336
+is_bookable     bool      0       2                     True
+
+--- First three rows of each ------------------------------------------
+query_id market       city           raw_query  results_shown  clicked  purchased       date
+ Q000001     GB     London         hair colour              1        0          0 2026-06-06
+ Q000002     GB     London  supercar track day              0        0          0 2026-06-21
+ Q000003     GB Manchester deep tissue massage             20        1          0 2026-06-24
+
+deal_id market   city                     title       category_l1 category_l2  price_usd  rating  num_ratings  is_bookable
+ D00001     GB London   Spa & Massage Treatment Beauty & Wellness     massage     176.17    4.20          336         True
+ D00002     GB London Relaxing Wellness Session Beauty & Wellness     massage      65.19    4.90           54        False
+ D00003     GB London Full Body Massage Package Beauty & Wellness     massage      24.20    4.20          367         True
+
+==========================================================================
+2. INTEGRITY CHECKS
+==========================================================================
+  rows in search_log                          8,997
+  rows in deals                                 568
+  null cells anywhere in search_log               0
+  null cells anywhere in deals                    0
+  duplicate query_id                              0
+  duplicate deal_id                               0
+  fully duplicated search rows                    0
+  purchases without a click                       0
+  clicks on a zero-result search                  0
+  clicked values outside {0,1}                    0
+  purchased values outside {0,1}                  0
+  negative result counts                          0
+  cities in the log but not in deals              0
+  cities in deals but not in the log              0
+
+==========================================================================
+3. WHAT PERIOD, WHICH MARKETS, WHICH CITIES
+==========================================================================
+date range      2026-06-01  ->  2026-06-30   (30 distinct days)
+searches / day  min 272   median 296   max 334
+
+--- Searches and deals side by side -----------------------------------
+        searches  cities  deals  searches_per_deal
+market                                            
+DE          1724       4    122              14.13
+ES          1997       4    114              17.52
+FR          1772       4    122              14.52
+GB          2587       4    141              18.35
+PL           917       4     69              13.29
+
+--- By city -----------------------------------------------------------
+            searches  deals  searches_per_deal
+city                                          
+Kraków           168     10              16.80
+Wrocław          187     11              17.00
+Gdańsk            88     17               5.18
+Marseille        317     19              16.68
+Manchester       556     19              29.26
+Valencia         393     21              18.71
+Lyon             341     21              16.24
+Hamburg          323     21              15.38
+Sevilla          200     22               9.09
+Barcelona        384     22              17.45
+München          358     24              14.92
+Glasgow          247     26               9.50
+Toulouse         196     26               7.54
+Birmingham       509     27              18.85
+Köln             168     29               5.79
+Warszawa         474     31              15.29
+Berlin           875     48              18.23
+Madrid          1020     49              20.82
+Paris            918     56              16.39
+London          1275     69              18.48
+
+==========================================================================
+4. WHAT PEOPLE TYPED
+==========================================================================
+distinct raw query strings   613
+searches per distinct string median 1, max 299
+strings searched only once   449
+
+--- Twenty most common queries ----------------------------------------
+                     searches  markets
+raw_query                             
+crossfit                  299        5
+brunch                    291        5
+pilates                   283        5
+paintball                 275        5
+sushi                     265        5
+escape room               229        5
+rafting                   207        3
+bowling                   194        5
+personal trainer          156        5
+thai massage              139        5
+burger                    117        3
+karting                   113        2
+gym                       109        5
+manicure                  108        5
+deep tissue massage       107        5
+facial                    106        5
+steak dinner              105        5
+pizza deal                104        5
+eyelash extensions        101        4
+indian restaurant         100        4
+
+--- Query length in characters ----------------------------------------
+count   8,997.00
+mean       11.50
+std         4.58
+min         3.00
+25%         8.00
+50%        11.00
+75%        15.00
+max        24.00
+
+==========================================================================
+5. HOW MANY RESULTS CAME BACK
+==========================================================================
+count   8,997.00
+mean        8.36
+std         9.91
+min         0.00
+25%         0.00
+50%         2.00
+75%        16.00
+max        40.00
+
+min 0  max 40
+values that never occur between 0 and 40: [3]
+
+--- Full distribution -------------------------------------------------
+    0   2,633   29.3%  ##############################################
+    1   1,042   11.6%  ##################
+    2   1,045   11.6%  ##################
+    4     164    1.8%  ###
+    5     148    1.6%  ###
+    6     141    1.6%  ##
+    7     137    1.5%  ##
+    8     175    1.9%  ###
+    9     175    1.9%  ###
+   10     167    1.9%  ###
+   11     179    2.0%  ###
+   12     177    2.0%  ###
+   13     197    2.2%  ###
+   14     177    2.0%  ###
+   15     155    1.7%  ###
+   16     170    1.9%  ###
+   17     168    1.9%  ###
+   18     184    2.0%  ###
+   19     186    2.1%  ###
+   20     181    2.0%  ###
+   21     170    1.9%  ###
+   22     191    2.1%  ###
+   23     196    2.2%  ###
+   24     170    1.9%  ###
+   25     198    2.2%  ###
+   26      33    0.4%  #
+   27      27    0.3%  #
+   28      38    0.4%  #
+   29      30    0.3%  #
+   30      43    0.5%  #
+   31      31    0.3%  #
+   32      27    0.3%  #
+   33      34    0.4%  #
+   34      32    0.4%  #
+   35      32    0.4%  #
+   36      31    0.3%  #
+   37      28    0.3%  #
+   38      32    0.4%  #
+   39      29    0.3%  #
+   40      24    0.3%  #
+
+--- Grouped into the four contiguous blocks the data forms ------------
+              searches  share_%  CTR_%  CVR_%
+block                                        
+A  0 results      2633    29.30   0.00   0.00
+B  1-2            2087    23.20  10.30   1.70
+C  4-25           3806    42.30  54.90  17.80
+D  26-40           471     5.20  25.70   2.30
+
+==========================================================================
+6. THE FUNNEL, WHOLE MONTH
+==========================================================================
+searches   8,997
+clicks     2,427   (27.0% of searches)
+purchases  723   (8.0% of searches, 29.8% of clicks)
+
+--- By market ---------------------------------------------------------
+        searches   CTR  CVR  median_results  zero_%
+market                                             
+DE          1724 26.70 7.50            2.00   26.90
+ES          1997 27.30 9.00            2.00   29.60
+FR          1772 25.20 7.00            2.00   30.10
+GB          2587 28.90 8.50            4.00   28.80
+PL           917 24.90 7.60            2.00   32.60
+
+--- By day of week ----------------------------------------------------
+           searches   CTR  CVR
+weekday                       
+Monday         1527 25.50 8.30
+Tuesday        1497 27.70 9.20
+Wednesday      1169 25.30 7.70
+Thursday       1198 26.50 6.10
+Friday         1193 30.40 8.80
+Saturday       1179 25.40 7.50
+Sunday         1234 28.00 8.30
+
+==========================================================================
+7. WHAT IS ON THE SHELF
+==========================================================================
+deals 568   distinct titles 75   -> 7.6 deals per title
+
+--- Category structure ------------------------------------------------
+category_l2        activities  beauty  dining  fitness  massage
+category_l1                                                    
+Beauty & Wellness           0     108       0        0      108
+Food & Drink                0       0     100        0        0
+Health & Fitness            0       0       0      120        0
+Things To Do              132       0       0        0        0
+
+--- Every distinct title, with how many deals carry it ----------------
+                                deals  cities
+title                                        
+Clases Ilimitadas                  14       4
+Experiencia Escape Room            14       4
+Visite Guidée                      14       4
+Coaching Personnel                 13       4
+Full Body Massage Package          13       3
+Tasting Menu for Two               13       4
+Expérience Escape Game             13       4
+Tour Guiado                        13       4
+Unlimited Fitness Classes          13       4
+Gesichtsbehandlung                 12       3
+Guided City Tour                   12       4
+Tratamiento de Bienestar           12       4
+Escape Room Erlebnis               12       4
+Manicure & Pedicure Package        11       3
+Forfait Massage Bien-être          11       3
+Facial Treatment                   11       4
+Hair Styling & Cut                 11       3
+Gym Membership Pass                11       4
+Modelage Détente                   10       4
+Degustationsmenü                   10       4
+Zwiedzanie z Przewodnikiem         10       4
+Fitnessstudio Mitgliedschaft       10       4
+Menu 3 Plats pour Deux             10       3
+Manucure & Pédicure                10       2
+Dinner mit Weinbegleitung           9       4
+Cours Illimités                     9       4
+Three-Course Meal for Two           9       3
+Entrenamiento Personal              9       4
+Cena con Maridaje                   8       3
+Spa & Massage Treatment             8       3
+Entspannungs-Behandlung im Spa      8       3
+Haarschnitt & Styling               8       3
+Personal Training Package           8       3
+Kartbahn Rennen                     8       4
+Unbegrenzte Kurse                   7       3
+Tratamiento Facial                  7       3
+Stadtführung                        7       3
+Wohlfühl-Massage                    7       3
+Kolacja z Winem                     7       4
+Escape Room Experience              7       4
+Strzyżenie i Stylizacja             7       4
+Manicura y Pedicura                 6       3
+Sesión de Karting                   6       4
+Sesión de Masaje y Spa              6       3
+Session Karting                     6       3
+Personal Training Paket             6       3
+Soin du Visage                      6       4
+Relaxing Wellness Session           6       4
+Wellness-Massage Paket              6       1
+Maniküre & Pediküre                 6       4
+3-Gänge-Menü für Zwei               6       3
+Coupe & Coiffage                    5       2
+Dinner & Wine Experience            5       3
+Zajęcia bez Limitu                  5       2
+Escape Room Przygoda                5       2
+Menu Degustacyjne                   5       3
+Sesja Wellness                      5       2
+Zabieg Spa i Masaż                  5       3
+Abonnement Salle de Sport           5       3
+Pase de Gimnasio                    4       3
+Menú de 3 Platos para Dos           4       3
+Menú Degustación                    4       3
+Masaż Relaksacyjny Pakiet           4       3
+Dîner avec Vin                      4       2
+Circuito Spa con Masaje             4       1
+Menu Dégustation                    3       3
+Menu 3-Daniowe dla Dwojga           3       2
+Go-Karting Session                  3       1
+Karnet na Siłownię                  3       3
+Séance Spa Relaxante                3       3
+Trening Personalny                  3       3
+Zabieg na Twarz                     3       2
+Corte y Peinado                     3       2
+Tor Kartingowy                      2       2
+Manicure i Pedicure                 2       2
+
+--- Prices (USD, as labelled in the file) -----------------------------
+count   568.00
+mean     92.53
+std      49.12
+min      12.63
+25%      50.28
+50%      91.83
+75%     135.42
+max     179.46
+
+deciles: [12.63, 25.8, 42.86, 57.25, 72.38, 91.83, 108.68, 126.43, 144.41, 161.92, 179.46]
+
+deals above $150  97
+deals above $175  14
+most expensive    $179.46
+
+--- Ratings and bookability -------------------------------------------
+count   568.00
+mean      4.30
+std       0.38
+min       3.10
+25%       4.00
+50%       4.30
+75%       4.60
+max       5.00
+
+rated below 4.0   116 of 568  (20.4%)
+instantly bookable 315 of 568  (55.5%)
+
+bookable by market:
+market
+DE   48.40
+ES   43.00
+FR   57.40
+GB   75.90
+PL   43.50
+
+==========================================================================
+8. WHAT THESE FILES DO NOT CONTAIN
+==========================================================================
+Listed because it bounds every conclusion drawn in step 2.
+
+  no deal_id on a search   we know HOW MANY results appeared, never WHICH ones,
+                           and never what was bought
+  no user_id or session    a customer who searched, got nothing, retyped and then
+                           bought appears as two unrelated rows
+  no position or ranking   nothing about the order results were shown in
+  no timestamp beyond day  no time of day, no ordering within a day
+  no coordinates           no distances, so "the next city over" cannot be computed
+  no currency field        prices are labelled USD across five non-US markets
+  no relevance label       nothing states whether a result was correct. Step 2 has
+                           to define that, and that definition is a judgement.
+
+==========================================================================
+END OF STEP 1 — nothing above is an interpretation. Step 2 begins the argument.
+==========================================================================
