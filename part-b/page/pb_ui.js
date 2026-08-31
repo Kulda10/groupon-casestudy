@@ -17,12 +17,12 @@
      have. */
   var PROBLEMS = [
     { key: "invented", n: "Problem 1", name: "The count is invented" },
-    { key: "words",    n: "Problem 2", name: "The words don't match" },
+    { key: "words",    n: "Problem 2", name: "The words don’t match" },
     { key: "nothing",  n: "Problem 3", name: "There is nothing to sell" }
   ];
 
   var ARCHETYPES = [
-    { n: "02", label: "Blind to stock",      q: "gym",                 m: "GB", c: "Manchester", f: "F2",  p: "invented" },
+    { n: "02", label: "Blind to the catalog",      q: "gym",                 m: "GB", c: "Manchester", f: "F2",  p: "invented" },
     { n: "03", label: "Unstable results",    q: "back massage",        m: "GB", c: "London",     f: "F3",  p: "invented" },
     { n: "08", label: "Overload",            q: "brunch",              m: "GB", c: "London",     f: "F8",  p: "invented" },
     { n: "04", label: "Wrong language",      q: "deep tissue massage", m: "DE", c: "Berlin",     f: "F4",  p: "words" },
@@ -30,21 +30,21 @@
     { n: "10", label: "Misspellings",        q: "susshi",              m: "GB", c: "London",     f: "F10", p: "words" },
     { n: "",   label: "Not understood",     q: "asdfgh",              m: "GB", c: "London",     st: "not-understood",   p: "words" },
     { n: "06", label: "Nothing to sell",     q: "helicopter tour",     m: "GB", c: "London",     f: "F6",  p: "nothing" },
-    { n: "",   label: "Not stocked at all",  q: "paintball",           m: "GB", c: "London",     st: "not-stocked-here", p: "nothing" },
+    { n: "",   label: "Not in any catalog",  q: "paintball",           m: "GB", c: "London",     st: "not-stocked-here", p: "nothing" },
     { n: "",   label: "Not in this city",    q: "manicure",            m: "FR", c: "Marseille",  st: "not-in-city",      p: "nothing" },
-    { n: "",   label: "Thin stock",          q: "manicure",            m: "PL", c: "Kraków",     st: "thin",             p: "nothing" }
+    { n: "",   label: "Thin catalog",          q: "manicure",            m: "PL", c: "Kraków",     st: "thin",             p: "nothing" }
   ];
 
-  /* ---------- finding → behaviour, the table from FINDINGS_TO_BEHAVIOUR.md ----------
+  /* ---------- finding → behavior, the table from FINDINGS_TO_BEHAVIOUR.md ----------
      The "real example" column is not in here: it is generated live from whatever query is
      on screen, so the row always describes the thing the reviewer is looking at. */
-  var BEHAVIOUR = {
+  var BEHAVIOR = {
     F1: { pillar: "refusal", today:
       "Conversion falls off a cliff rather than sloping. 0 results convert at 0%, 1–2 at 1.7%, 4–25 at 17.8%, 26–40 at 2.3%. The 2,087 searches in the 1–2 band are watched by nobody, because they are not zero.",
       does: "Never pads a thin set to look fuller. It says how thin the city actually is, and where the real ones are instead.",
       fix: "TARGET", note: "The scoreboard, not a bug — it is what makes the rest measurable" },
     F2: { pillar: "retrieval", today:
-      "The number of results has no relationship to matching inventory: r = +0.02, and it holds under three independent definitions of a match. The catalogue could double overnight and the counts would not move.",
+      "The number of results has no relationship to the matching catalog: r = +0.02, and it holds under three independent definitions of a match. The catalog could double overnight and the counts would not move.",
       does: "The count is the number of deals in that city whose concept matches the query. There is no other source for the number.",
       fix: "FULLY" },
     F3: { pillar: "retrieval", today:
@@ -56,11 +56,11 @@
       does: "The typed string resolves to a concept, and a concept has no language, so local-language deals come back whatever was typed. The response line names the translation it made.",
       fix: "FULLY", note: "The cheapest high-value fix in the set" },
     F5: { pillar: "intent", today:
-      "The catalogue names deals in generic package language while customers search in specific product language. 75 distinct titles cover all 568 deals, and they name almost none of the things people actually type.",
-      does: "Title-level match where the catalogue names the concept; otherwise the category, labelled as the category. A dining package is never dressed up as a sushi result.",
+      "The catalog names deals in generic package language while customers search in specific product language. 75 distinct titles cover all 568 deals, and they name almost none of the things people actually type.",
+      does: "Title-level match where the catalog names the concept; otherwise the category, labeled as the category. A dining package is never dressed up as a sushi result.",
       fix: "PARTLY", note: "Search can be honest about it; only merchandising can retitle the deals" },
     F6: { pillar: "refusal", today:
-      "Six concepts — helicopter, hot-air balloon, skydiving, rafting, supercar track day, shark diving — return zero results every single time. 1,512 searches, 0 clicks, 0 purchases, and 57% of every zero-result search on the platform. The most expensive deal anywhere in the catalogue is $179.46.",
+      "Six concepts — helicopter, hot-air balloon, skydiving, rafting, supercar track day, shark diving — return zero results every single time. 1,512 searches, 0 clicks, 0 purchases, and 57% of every zero-result search on the platform. The most expensive deal anywhere in the catalog is $179.46.",
       does: "Says so as a finished state rather than an error, offers one adjacent thing that genuinely exists, names the price ceiling, and captures the demand as a supply signal.",
       fix: "NO", note: "No retrieval change creates a helicopter operator — merchandising and supply" },
     F7: { pillar: "retrieval", today:
@@ -81,7 +81,7 @@
       fix: "NO", note: "Merchandising and content, not search" }
   };
 
-  /* ---------- one glyph per catalogue category; there are no images in the data ---------- */
+  /* ---------- one glyph per catalog category; there are no images in the data ---------- */
   var GLYPH = {
     massage:   '<path d="M4 14c3-4 5-6 8-6s5 2 8 6"/><path d="M4 19c3-4 5-6 8-6s5 2 8 6"/>',
     beauty:    '<path d="M12 3l2.4 5.2L20 9.4l-4 4 1 5.6-5-2.8-5 2.8 1-5.6-4-4 5.6-1.2z"/>',
@@ -285,11 +285,11 @@
 
   /* ---------- Proposed ---------- */
   // Every card names its own city. In the all-markets scope the results come from twenty
-  // different catalogues, and a card that does not say where it is cannot be checked.
+  // different catalogs, and a card that does not say where it is cannot be checked.
   function dealCard(d, cls) {
     var away = state.city && d.city !== state.city;
     // Titles outside the UK are written in the local language. Hovering one says what it is
-    // in English — the glosses cover all 75 catalogue titles, built with the data bundle.
+    // in English — the glosses cover all 75 catalog titles, built with the data bundle.
     var en = DATA.titleEn[d.title];
     var foreign = d.market !== "GB" && en;
     // Print the gloss inline only when it says something the category line does not already
@@ -311,51 +311,50 @@
   // The useful half of a "similar deals" rail, without the word similar.
   function popularBlock(p) {
     if (!p.popular || !p.popular.length) return "";
-    var where = state.city ? esc(state.city) : "the catalogue";
+    var where = state.city ? esc(state.city) : "the catalog";
     return '<div class="pb-blk"><p class="pb-h">What ' + where + " does sell</p>" +
       p.popular.map(function (d) { return dealCard(d); }).join("") +
       '<p class="pb-dnote">The best-rated deal in each of the three biggest categories. ' +
       "<b>Not “similar deals”</b> — nothing here can tell whether they resemble what you asked " +
-      "for, so the screen does not claim it. Today’s search fills this space with an unlabelled " +
+      "for, so the screen does not claim it. Today’s search fills this space with an unlabeled " +
       "grid and lets you assume.</p></div>";
   }
 
   function tilesBlock(p) {
     if (!p.tiles.length) return "";
-    var scope = state.city ? esc(state.city) : "the catalogue";
+    var scope = state.city ? esc(state.city) : "the catalog";
     return '<div class="pb-blk"><p class="pb-h">What ' + scope + " does have — " +
       plural(state.city ? p.cityTotal : DATA.stats.deals, "deal", "deals") + "</p>" +
       '<div class="pb-tiles">' + p.tiles.map(function (t) {
         return '<button type="button" class="pb-tile" data-cat="' + esc(t.cat) + '">' +
           esc(t.label) + " <b>" + t.count + "</b></button>";
       }).join("") + "</div>" +
-      '<p class="pb-dnote">Real counts from the ' + scope +
+      '<p class="pb-dnote">Real counts from ' + scope +
       ". Each one runs that search — a dead end becomes a way back in.</p></div>";
   }
 
   function notifyBlock(p) {
-    if (!p.notify) return "";
+    // A demand signal needs a demand number behind it. When the query did not resolve we have
+    // neither - offering to go find an operator for "asdfgh" is the unearned promise this
+    // prototype exists to argue against. States that DID resolve keep their notify and their count.
+    if (!p.notify || p.notify.raw) return "";
     var where = state.city ? " in " + esc(state.city) : " anywhere";
-    var raw = p.notify.raw;
     return '<div class="pb-notify"><p><b>Want ' +
-      (raw ? "“" + esc(p.notify.concept) + "”" : esc(p.notify.concept.toLowerCase())) + where +
+      esc(p.notify.concept.toLowerCase()) + where +
       "?</b> Tell us, and we’ll go looking for an operator.</p>" +
       '<button type="button" class="pb-nbtn" id="pb-notify">Notify me when it launches</button>' +
       '<p class="pb-fine">We’ll email you if one joins. Nothing else happens today — we’d rather say ' +
       "that than show you a boat trip." +
-      (raw ? " <b>And an unrecognised search is captured as the raw string, exactly as typed.</b> " +
-             "Someone has to read the queue before any of it means anything: “asdfgh” lands in it " +
-             "next to “basketball”. Naming that is the point — it is a supply lead, not a metric."
-           : "") + "</p></div>";
+      "</p></div>";
   }
 
   function paintAll(p) {
     var h = [], rows = p.perCity || [];
-    h.push('<p class="pb-changed"><b>Catalogue-wide check</b> Not what a customer sees — this is ' +
+    h.push('<p class="pb-changed"><b>Catalog-wide check</b> Not what a customer sees — this is ' +
       "every one of the " + DATA.stats.deals + " deals in all " + DATA.cities.length +
-      " cities at once, so a claim like “nobody stocks this” can be checked in one step.</p>");
+      " cities at once, so a claim like “no catalog holds this” can be checked in one step.</p>");
     if (p.state === "not-understood") {
-      h.push('<p class="pb-rhead">Nothing in the whole catalogue is like “' +
+      h.push('<p class="pb-rhead">Nothing in the whole catalog is like “' +
         esc(state.query.trim()) + '”.</p>');
       h.push('<p class="pb-rsub">Checked all ' + DATA.stats.deals + " deals in all " +
         DATA.cities.length + " cities. Five categories deep, and this is not one of them.</p>");
@@ -365,12 +364,12 @@
         "markets. This is the supply gap, seen whole.</p>");
     }
     if (p.alternative) {
-      h.push('<div class="pb-blk"><p class="pb-h">Closest thing the catalogue has at all</p>' +
+      h.push('<div class="pb-blk"><p class="pb-h">Closest thing the catalog has at all</p>' +
         dealCard(p.alternative.deal, "pb-alt") +
         '<p class="pb-dnote">' + esc(p.alternative.label) + " — " + p.alternative.count +
         " of them" + (p.altCities ? " across " + p.altCities + " cities" : "") +
         ". A different experience, not a replacement. <b>Which substitute anyone would accept is " +
-        "not in the data</b>; this mapping is a judgement.</p></div>");
+        "not in the data</b>; this mapping is a judgment.</p></div>");
     }
     if (rows.length && (p.category || p.altConcept)) {
       var top = rows.slice().sort(function (a, b) { return b.exact - a.exact || b.adjacent - a.adjacent; });
@@ -385,7 +384,7 @@
             '" data-city="' + esc(r.city) + '"><span>' + esc(r.city) + "</span><b>" +
             (r.exact ? r.exact : "0") + "</b></button>";
         }).join("") + "</div>" +
-        '<p class="pb-dnote">Click a city to drop back into that one catalogue.</p></div>');
+        '<p class="pb-dnote">Click a city to drop back into that one catalog.</p></div>');
     }
     if (!p.exact.length) { h.push(popularBlock(p)); h.push(tilesBlock(p)); h.push(notifyBlock(p)); }
     if (p.exact.length) {
@@ -414,10 +413,11 @@
     if (p.state === "not-understood") {
       h.push('<p class="pb-rhead">' + (p.step.empty ? "Nothing typed yet."
         : "We don’t sell anything like “" + esc(state.query.trim()) + "”.") + "</p>");
-      h.push('<p class="pb-rsub">This catalogue is five categories deep — massage and spa, beauty, ' +
+      h.push('<p class="pb-rsub">This catalog is five categories deep — massage and spa, beauty, ' +
         "fitness, dining, things to do. That may be the whole answer, or it may be a gap nobody has " +
-        "noticed. <b>Search on its own cannot tell the difference</b>, so it says both, offers the " +
-        "way back in, and passes the query on.</p>");
+        "noticed. <b>Search on its own cannot tell the difference</b> — so it says so plainly and " +
+        "shows what the city does sell, rather than inventing a match or promising to go and find " +
+        "one for a word it could not read.</p>");
       h.push(popularBlock(p));
       h.push(tilesBlock(p));
       h.push(notifyBlock(p));
@@ -457,7 +457,7 @@
           '<p class="pb-dnote">A different experience, not a replacement — ' + esc(state.city) +
           " has " + p.alternative.count + " of these. One suggestion, not a grid of nine. " +
           "<b>Which substitute anyone would accept is not in the data</b>; this mapping is a " +
-          "judgement, and the demand below is the part that is measured.</p></div>");
+          "judgment, and the demand below is the part that is measured.</p></div>");
       }
       h.push(tilesBlock(p));
       h.push(notifyBlock(p));
@@ -468,7 +468,7 @@
 
     if (p.state === "not-in-city") {
       h.push('<p class="pb-rhead">No ' + esc(p.step.intent.phrase) + " in " + esc(state.city) + ".</p>");
-      h.push('<p class="pb-rsub">The catalogue can name this — it just holds none of it here. ' +
+      h.push('<p class="pb-rsub">The catalog can name this — it just holds none of it here. ' +
         "Here is what " + esc(state.city) + " does have in the same category, and where the real ones are.</p>");
       // What is actually reachable comes first. The other city is a footnote, not an offer:
       // with no coordinates in the data, "elsewhere in France" can be 600 km away.
@@ -515,7 +515,7 @@
       p.exact.forEach(function (d) { titles[d.title] = (titles[d.title] || 0) + 1;
                                      biggest = Math.max(biggest, titles[d.title]); });
       h.push('<p class="pb-more"><button type="button" class="pb-morebtn" data-x="1">+ ' + leftExact + " more</button>" +
-        (biggest > 1 ? " · " + biggest + " of the " + p.exact.length + " carry the same title — the catalogue has " +
+        (biggest > 1 ? " · " + biggest + " of the " + p.exact.length + " carry the same title — the catalog has " +
           DATA.stats.distinctTitles + " titles for " + DATA.stats.deals + " deals (finding F11)" : "") + "</p>");
     }
 
@@ -536,7 +536,7 @@
       if (p.affinityOrdered) {
         h.push('<p class="pb-more" style="border-top:0;padding-top:4px">Ordered by how close each thing is to ' +
           esc(p.step.matchedTerm) + " — " + esc(nearestConceptName(p)) +
-          " first. <b>That ordering is a judgement, not a measurement</b>; the data cannot say which substitute a customer would accept.</p>");
+          " first. <b>That ordering is a judgment, not a measurement</b>; the data cannot say which substitute a customer would accept.</p>");
       }
     }
 
@@ -585,7 +585,7 @@
     });
   }
 
-  /* ---------- finding → behaviour, for the query on screen ---------- */
+  /* ---------- finding → behavior, for the query on screen ---------- */
   function liveExample(r) {
     var p = r.proposed, t = r.today, q = "“" + esc(state.query.trim() || " ") + "” in " + esc(state.city);
     var log = t.logged
@@ -608,7 +608,7 @@
         now = esc(state.city) + " holds " + plural(p.cityTotal, "deal", "deals") + " in total; " +
           p.exact.length + " of them match."; break;
       case "not-understood":
-        now = "Nothing in the catalogue resolves it, so there is nothing to count."; break;
+        now = "Nothing in the catalog resolves it, so there is nothing to count."; break;
       default:
         now = esc(state.city) + " holds " + plural(p.exact.length, "matching deal", "matching deals") +
           " out of " + p.cityTotal + "."; break;
@@ -619,10 +619,10 @@
   function paintBehaviour(r) {
     var a = activeArchetype();
     var f = r.findings[0];
-    var b = BEHAVIOUR[f.id] || BEHAVIOUR.F2;
-    var others = r.findings.slice(1).filter(function (o) { return BEHAVIOUR[o.id]; });
+    var b = BEHAVIOR[f.id] || BEHAVIOR.F2;
+    var others = r.findings.slice(1).filter(function (o) { return BEHAVIOR[o.id]; });
 
-    $("pb-behaviour").innerHTML =
+    $("pb-behavior").innerHTML =
       '<div class="pb-bhead">' +
         '<span class="pb-fno">Finding ' + esc(f.id) + " · " + esc(f.name) + "</span>" +
         '<span class="pb-fixwrap"><span class="pb-fix pb-fix-' + b.fix.toLowerCase() + '">' + esc(b.fix) + "</span>" +
@@ -782,7 +782,7 @@
   }
 
   window.PB = { render: render, state: state, engine: E, archetypes: ARCHETYPES,
-                problems: PROBLEMS, behaviour: BEHAVIOUR, coverage: coverage,
+                problems: PROBLEMS, behavior: BEHAVIOR, coverage: coverage,
                 go: function (i) { go(ARCHETYPES[i]); },
                 set: function (q, m, c) { state.query = q; state.market = m; state.city = c;
                                           state.run = 0; state.expand = false;

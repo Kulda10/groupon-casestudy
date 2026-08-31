@@ -105,16 +105,16 @@ console.log("   " + orphans + " orphans\n");
 
 /* --- 4. Total coverage --------------------------------------------------- */
 console.log("4. Total coverage — all 8,997 logged queries answered, none crashes");
-var crashes = 0, unlabelled = 0, byCode = {};
+var crashes = 0, unlabeled = 0, byCode = {};
 log.forEach(function (r) {
   var p;
   try { p = E.proposed(r.raw_query, r.market, r.city); }
   catch (e) { crashes++; return; }
-  if (!p.primary || E.CODES.indexOf(p.primary.code) < 0) { unlabelled++; return; }
+  if (!p.primary || E.CODES.indexOf(p.primary.code) < 0) { unlabeled++; return; }
   byCode[p.primary.code] = (byCode[p.primary.code] || 0) + 1;
 });
 ok(crashes === 0, "no exceptions", crashes + " crashes");
-ok(unlabelled === 0, "every answer carries one of the eight response codes", unlabelled + " unlabelled");
+ok(unlabeled === 0, "every answer carries one of the eight response codes", unlabeled + " unlabeled");
 Object.keys(byCode).sort(function (a, b) { return byCode[b] - byCode[a]; }).forEach(function (c) {
   console.log("   " + (byCode[c] + "").padStart(5) + "  " + (100 * byCode[c] / log.length).toFixed(1).padStart(5) + "%  " + c);
 });
@@ -239,7 +239,7 @@ ok(pa.perCity.length === bundle.cities.length && pa.perCity.every(function (r) {
 var ma = E.proposedAll("manicure");
 ok(ma.exact.length === 35 && ma.withExact === 14, "manicure: 35 deals across 14 cities",
    ma.exact.length + " across " + ma.withExact);
-ok(ma.count <= bundle.deals.length, "all-markets never returns more than the catalogue holds",
+ok(ma.count <= bundle.deals.length, "all-markets never returns more than the catalog holds",
    ma.count + " > " + bundle.deals.length);
 var ta = E.todayAll("paintball");
 ok(ta.logged && ta.runs === 275 && ta.cities === 20,

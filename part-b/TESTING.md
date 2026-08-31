@@ -9,7 +9,7 @@ between the engine and the UI.
 Do not write a line of interface until all four of these pass. Write them as a script
 (`test_engine.js`) that prints pass/fail counts and exits non-zero on any failure.
 
-1. **Inventory cap.** For every one of the 1,322 distinct `(market, city, query)` keys in the log, the proposed engine's result count is ≤ that city's total deal count. **Expected violations: 0.**
+1. **Catalog cap.** For every one of the 1,322 distinct `(market, city, query)` keys in the log, the proposed engine's result count is ≤ that city's total deal count. **Expected violations: 0.**
 2. **Determinism.** Run 100 randomly chosen queries twice each, in a fresh engine instance. Compare the full serialised output, not just the count. **Expected differences: 0.**
 3. **Provenance.** Every returned card's `deal_id` exists in `deals.csv`, and its market and city match the selected market and city. **Expected orphans: 0.**
 4. **Total coverage.** Feed all 8,997 raw queries through the engine. Every one returns one of the eight response types — never an exception, never an empty state that is not `NOT UNDERSTOOD`. **Expected crashes: 0.**
@@ -39,7 +39,7 @@ The panel will not stick to the chips. Try, at minimum: an empty submit; a singl
 200-character string; `<script>alert(1)</script>`; a query in a fifth language in the wrong market
 (`masaż` in Madrid); a real deal title pasted verbatim (`Wellness-Massage Paket`); a query with
 emoji; leading and trailing whitespace; `MASSAGE` in caps; `Ma  ssage` with a double space. None
-may crash, hang, or produce an unlabelled empty screen.
+may crash, hang, or produce an unlabeled empty screen.
 
 ## Gate 4 — the page it lives in
 

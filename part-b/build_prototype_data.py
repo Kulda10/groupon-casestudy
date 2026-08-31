@@ -5,7 +5,7 @@ terms across five languages), but reads the CSVs with the stdlib instead of pand
 keys the log by (market, city, query) instead of (market, query), and keeps every
 individual results_shown value so the Today pane can replay the real distribution.
 
-Adds `titleTerms` per intent: the literal strings that appear in real catalogue titles
+Adds `titleTerms` per intent: the literal strings that appear in real catalog titles
 for that concept. An intent with titleTerms that hit is a title-level match (MATCHED);
 an intent whose category exists but whose concept is never named in a title is a
 category-level match (CATEGORY ONLY). That distinction is finding F5 made mechanical.
@@ -27,7 +27,7 @@ def norm(t):
     return " ".join(d.split())
 
 # --- Intents -------------------------------------------------------------
-# key, catalogue category (None = the catalogue holds nothing for this concept),
+# key, catalog category (None = the catalog holds nothing for this concept),
 # display label, query terms (verbatim from the log, five languages),
 # titleTerms (substrings that really occur in deals.csv titles for this concept).
 INTENTS = [
@@ -39,8 +39,8 @@ INTENTS = [
    "masaż","wellness","spa"],
   ["massage","masaje","masaz","modelage","wellness","wohlfuhl","spa","bienestar","detente","relaks"]),
 
- ("hair", "beauty", "Hair styling & colour",
-  ["haircut","hair colour","hair color","haare färben","friseur","haarschnitt","coiffeur",
+ ("hair", "beauty", "Hair styling & color",
+  ["haircut","hair color","hair color","haare färben","friseur","haarschnitt","coiffeur",
    "coloration","coupe","peluqueria","tinte pelo","corte pelo","fryzjer","koloryzacja","strzyżenie"],
   ["hair","haarschnitt","coupe","coiffage","corte","peinado","strzyzenie","stylizacja","styling"]),
 
@@ -97,7 +97,7 @@ INTENTS = [
   ["paintball"],
   []),
 
- # --- nothing in the catalogue matches these, anywhere in the five markets ---
+ # --- nothing in the catalog matches these, anywhere in the five markets ---
  ("helicopter", None, "Helicopter flight",
   ["helicopter tour","hubschrauber rundflug","tour en helicoptere","vuelo en helicoptero",
    "lot helikopterem"], []),
@@ -114,20 +114,20 @@ INTENTS = [
   ["shark diving","diving"], []),
 ]
 
-# One adjacent concept per unstockable one, mapped by hand and labelled in the UI as a
-# judgement call. Where no honest adjacency exists the prototype shows nothing.
+# One adjacent concept per unstockable one, mapped by hand and labeled in the UI as a
+# judgment call. Where no honest adjacency exists the prototype shows nothing.
 # One adjacent concept for each of the six nobody stocks. The first three are close reads —
 # a supercar day and a go-kart session are both motorsport, a helicopter tour and a city tour
 # are both "see the city". The last three are further away, and were originally left empty on
 # the grounds that showing nothing beats reaching. That was over-cautious: skydiving is the
 # most-searched of the six (387 searches) and rafting is third (312), and both were answering
-# with a blank. They now point at the nearest thing the catalogue has at all, and the interface
-# says plainly that the mapping is a judgement rather than a measurement.
+# with a blank. They now point at the nearest thing the catalog has at all, and the interface
+# says plainly that the mapping is a judgment rather than a measurement.
 ADJACENT = {"supercar": "karting", "helicopter": "citytour", "balloon": "citytour",
             "skydiving": "karting", "rafting": "karting", "diving": "citytour"}
 
 # Which other concepts in the same category are closest, closest first. Ranking only —
-# it never adds or removes a result. A hand-made judgement, and the UI says so: without it
+# it never adds or removes a result. A hand-made judgment, and the UI says so: without it
 # a paintball search leads with a Guided City Tour purely because that deal is rated 4.7.
 AFFINITY = {
     "paintball": ["karting", "escape", "citytour"],
@@ -149,7 +149,7 @@ AFFINITY = {
 }
 
 # How the concept reads inside a sentence ("No <phrase> is listed in London").
-PHRASE = {"massage": "massage", "hair": "haircut or colour", "facial": "facial treatment",
+PHRASE = {"massage": "massage", "hair": "haircut or color", "facial": "facial treatment",
           "nails": "manicure or pedicure", "lashes": "eyelash extension", "gym": "gym pass",
           "trainer": "personal training", "classes": "fitness class", "dining": "restaurant deal",
           "escape": "escape room", "karting": "go-karting session", "citytour": "guided city tour",
@@ -161,7 +161,7 @@ PHRASE = {"massage": "massage", "hair": "haircut or colour", "facial": "facial t
 # Words nobody typed in this one month but that plainly mean the same thing. The intent map
 # above is built strictly from the log; this list is not, and is kept separate so the
 # provenance of each stays obvious. A month of logs is not the vocabulary of a market — a
-# reviewer typing "hairdresser" or "wine tasting" is asking for something the catalogue holds,
+# reviewer typing "hairdresser" or "wine tasting" is asking for something the catalog holds,
 # and answering "could not read an intent" would be a failure of the search, not of the data.
 EXTRA_TERMS = {
  "hair":     ["hairdresser", "barber", "hair salon", "blow dry", "highlights", "balayage", "hair cut"],
@@ -169,7 +169,7 @@ EXTRA_TERMS = {
  "facial":   ["skin treatment", "face treatment", "facial treatment"],
  "massage":  ["spa day", "hot stone massage", "aromatherapy massage", "swedish massage",
               "full body massage", "relaxing massage", "wellness day"],
- "gym":      ["gym membership", "gym pass", "fitness pass", "leisure centre"],
+ "gym":      ["gym membership", "gym pass", "fitness pass", "leisure center"],
  "trainer":  ["personal training", "pt session", "fitness coach"],
  "classes":  ["spin class", "hiit", "zumba", "bootcamp", "fitness class", "gym class",
               "exercise class", "aerobics"],
@@ -216,7 +216,7 @@ for d in deals:
     city_cat[(d["market"], d["city"])][d["category_l2"]] += 1
 cities = [[m, c, sum(cc.values()), dict(cc)] for (m, c), cc in sorted(city_cat.items())]
 
-# --- Assert every titleTerm list actually hits the catalogue -----------------
+# --- Assert every titleTerm list actually hits the catalog -----------------
 titles_by_cat = collections.defaultdict(set)
 for d in deals:
     titles_by_cat[d["category_l2"]].add(d["title"])
@@ -236,10 +236,10 @@ for key, cat, label, terms, tterms in INTENTS:
 if problems:
     raise SystemExit("title-term map is wrong:\n  " + "\n  ".join(problems))
 
-# `titleTerms` answers "does the catalogue name what the customer asked for?" and decides
+# `titleTerms` answers "does the catalog name what the customer asked for?" and decides
 # MATCHED vs CATEGORY ONLY. `dealTerms` answers the different question "which concept is
 # this deal?", and only feeds the affinity ordering. They differ in exactly one place:
-# the catalogue sells an unlimited class pass, so a deal can BE a fitness class — but it
+# the catalog sells an unlimited class pass, so a deal can BE a fitness class — but it
 # never names crossfit, yoga or pilates, which is what customers actually type.
 DEAL_TERMS = {"classes": ["unlimited fitness classes", "unbegrenzte kurse", "cours illimites",
                           "clases ilimitadas", "zajecia bez limitu"]}
@@ -270,7 +270,7 @@ for k, (cat, dts) in keys.items():
                 raise SystemExit("title %r claimed by both %s and %s" % (t, _owner[t], k))
             _owner[t] = k
 # dining is the one category with no sub-concepts at all — its fifteen titles are generic
-# dinner menus, which is finding 05 in the catalogue itself. Everywhere else, every title
+# dinner menus, which is finding 05 in the catalog itself. Everywhere else, every title
 # must belong to exactly one concept.
 _named_cats = {keys[k][0] for k in _owner.values()}
 _unowned = {t for cat in _named_cats for t in titles_by_cat[cat]} - set(_owner)

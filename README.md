@@ -42,7 +42,7 @@ The prototype's retrieval engine, with its invariants asserted against the full 
 node part-b/test_engine.js        # 187 checks; exits non-zero on any failure
 ```
 
-That covers the inventory cap over all 1,308 query-and-city pairs, determinism, provenance of every
+That covers the catalog cap over all 1,308 query-and-city pairs, determinism, provenance of every
 deal id, and that all 8,997 logged searches get one of the eight answers — plus the acceptance
 queries and an adversarial typing list.
 
@@ -62,7 +62,7 @@ python3 part-b/build_page.py             # engine + interface -> index.html
 | `index.html` | The page. One self-contained file — no build step, no dependencies. |
 | `data/` | The two supplied CSVs, unmodified, plus `searches_classified.csv` (the same log with a segment label per row, for row-by-row checking). |
 | `part-a/` | The three scripts, their committed output, and **[`DEEP_DIVE.md`](part-a/DEEP_DIVE.md)** — the fuller write-up: method, all fifteen findings, the three traps, the ICE ranking and the four corrections. |
-| `part-b/` | The prototype: data build, engine, tests, interface. **[`PRD.md`](part-b/PRD.md)** is what it was built to, **[`FINDINGS_TO_BEHAVIOUR.md`](part-b/FINDINGS_TO_BEHAVIOUR.md)** ties every behaviour to the finding it answers, **[`README.md`](part-b/README.md)** records where the build differs from the PRD and why. |
+| `part-b/` | The prototype: data build, engine, tests, interface. **[`PRD.md`](part-b/PRD.md)** is what it was built to, **[`FINDINGS_TO_BEHAVIOUR.md`](part-b/FINDINGS_TO_BEHAVIOUR.md)** ties every behavior to the finding it answers, **[`README.md`](part-b/README.md)** records where the build differs from the PRD and why. |
 
 ## Two notes on method
 

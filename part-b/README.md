@@ -11,7 +11,7 @@ Everything below was verified against the CSVs; nothing is copied from the page 
 | `prototype_data.json` | 159 KB. 568 deals, 20 cities, 20 intents, 1,308 log keys with every individual `results_shown` value. |
 | `pb_engine.js` | The engine. Runs in node and in the browser from the same file, so the tests test what ships. |
 | `test_engine.js` | TESTING.md gates 1–3. `node v2/part_b_prototype/test_engine.js` — exits non-zero on any failure. |
-| `page/pb.css` · `page/pb_markup.html` · `page/pb_ui.js` · `page/pb_partb.html` | The interface. Every class is `pb-`; all JS is one IIFE exposing one global, `window.PB`. The finding→behaviour copy lives in `pb_ui.js` as `BEHAVIOUR`, transcribed from `FINDINGS_TO_BEHAVIOUR.md`. |
+| `page/pb.css` · `page/pb_markup.html` · `page/pb_ui.js` · `page/pb_partb.html` | The interface. Every class is `pb-`; all JS is one IIFE exposing one global, `window.PB`. The finding→behavior copy lives in `pb_ui.js` as `BEHAVIOUR`, transcribed from `FINDINGS_TO_BEHAVIOUR.md`. |
 | `build_page.py` | Splices all of the above into `../blueprint2.html` **in place**, between sentinels, and re-emits `preview.html`. |
 | `preview.html` | A standalone harness holding only the prototype, generated from the same files. Test artefact — not part of the submission. |
 
@@ -33,7 +33,7 @@ the class of failure that silently dropped 14 KB of CSS in an earlier session.
 122 checks, all green (`node v2/part_b_prototype/test_engine.js`). Gate 1, all four invariants, on
 the full data:
 
-- **Inventory cap** — 1,308 distinct `(market, city, query)` keys, **0 violations**.
+- **Catalog cap** — 1,308 distinct `(market, city, query)` keys, **0 violations**.
 - **Determinism** — 100 queries × 2 runs, plus a full re-init, **0 differences**.
 - **Provenance** — every returned `deal_id` exists in `deals.csv` and sits in the selected city, **0 orphans**.
 - **Coverage** — all 8,997 logged queries answered, **0 crashes**, every one carrying one of the eight
@@ -42,7 +42,7 @@ the full data:
   under the prototype.
 
 Gate 2 — all ten acceptance queries produce the stated response line and count (one deliberate
-deviation, below). Gate 3 — 20 adversarial inputs, none crashes, none produces an unlabelled screen,
+deviation, below). Gate 3 — 20 adversarial inputs, none crashes, none produces an unlabeled screen,
 nothing typed into the field reaches the DOM unescaped. Gate 5 — all ten states screenshotted at
 1440 px and read; the refusal and foreign-language states compared against `mockups/archetype03.png`
 and `mockups/archetype04.png`. Mobile checked at 375 px: no horizontal scroll, Proposed first,
@@ -61,7 +61,7 @@ away demand that measurably converts. The *ordering* was the bug. Every deal now
 concept (`dealTerms`, a separate question from `titleTerms`), and adjacent results are ranked by a
 hand-written affinity map: paintball → karting → escape room → city tour, bowling → escape room
 first, crossfit → the unlimited class pass first. It is a pure reordering — asserted in the tests —
-and the interface says out loud that the ordering is a judgement, not a measurement.
+and the interface says out loud that the ordering is a judgment, not a measurement.
 
 **2. The nearest-city state was dead code.** The PRD's "we don't have it here, but the next city
 does" branch could never fire: it hung off *category*-level emptiness, and every one of the 20

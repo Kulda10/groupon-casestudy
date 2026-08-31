@@ -226,7 +226,7 @@
   }
 
   // Two passes, and spelling correction sits between them. A stem ("raft" for rafting) is
-  // recognised before correction, because it is not a mistake. A long shared prefix
+  // recognized before correction, because it is not a mistake. A long shared prefix
   // ("skydive" for skydiving) is tried only after correction has failed, so that a real
   // misspelling is still corrected out loud rather than quietly absorbed.
   function gather(tok, mode) {
@@ -356,10 +356,10 @@
   }
 
   // Closest concept first, then the usual deterministic order. Ranking only: affinity
-  // never adds or removes a result, and the interface says the ordering is a judgement.
+  // never adds or removes a result, and the interface says the ordering is a judgment.
   function byAffinity(intent) {
     var order = {};
-    // A deal that IS the concept asked for comes first even when the catalogue never names
+    // A deal that IS the concept asked for comes first even when the catalog never names
     // that concept in the customer's words — an unlimited class pass is the closest thing to
     // a crossfit search, whatever the title says.
     order[intent.key] = -1;
@@ -395,7 +395,7 @@
 
   // Real cards for a query we could not read. Groupon's own empty state calls these "similar
   // deals"; nothing here can support the word similar, so they are the best-rated deal in each
-  // of the biggest categories and they are labelled as exactly that.
+  // of the biggest categories and they are labeled as exactly that.
   function popularIn(market, city) {
     var tiles = city ? categoryTiles(market, city) : catalogueTiles();
     return tiles.slice(0, 3).map(function (t) {
@@ -456,7 +456,7 @@
       }
       say("NOT UNDERSTOOD", step.empty
         ? "Nothing typed yet. Here is what " + city + " actually sells."
-        : "Nothing in the catalogue matches " + q(String(raw).trim()) +
+        : "Nothing in the catalog matches " + q(String(raw).trim()) +
           " — and search cannot tell whether that is because we do not sell it, or because we " +
           "have not learned the word. Here is what " + city + " does sell.");
       return finish(out);
@@ -476,14 +476,14 @@
                    : q(step.matchedTerm) + " → " + step.intent.label + "."));
     }
 
-    // 1. The concept exists nowhere in the catalogue — the six high-ticket ones.
+    // 1. The concept exists nowhere in the catalog — the six high-ticket ones.
     if (!step.intent.cat) {
       out.state = "not-sold-anywhere";
       out.unvalidated = true;
       say("NOT SOLD HERE", "No " + step.intent.phrase + " is listed on Groupon in " +
         city + " — or in any of the five markets. This is a supply gap, not a failed search.");
       say("ABOVE CEILING", "The most expensive deal in " + mkt.name + " is $" + mkt.maxPrice.toFixed(2) +
-        " (median $" + mkt.medianPrice.toFixed(2) + "). Nothing in the catalogue is priced like " +
+        " (median $" + mkt.medianPrice.toFixed(2) + "). Nothing in the catalog is priced like " +
         article(step.intent.phrase) + ".");
       var adj = step.intent.adjacent ? D.byIntent[step.intent.adjacent] : null;
       if (adj) {
@@ -508,7 +508,7 @@
     out.adjacentLabel = D.catLabel[step.intent.cat] || step.intent.cat;
     var total = exact.length + adjacent.length;
 
-    // The catalogue CAN name this concept — it just holds none of it in this city. That is a
+    // The catalog CAN name this concept — it just holds none of it in this city. That is a
     // local supply gap, and saying "here are some beauty deals" without saying "Paris has
     // eight manicures" would bury the useful half of the answer.
     if (exact.length === 0 && step.intent.titleTerms.length) {
@@ -538,7 +538,7 @@
       return finish(out);
     }
 
-    // The catalogue never names this concept. Whether we may say "we do not have it" depends
+    // The catalog never names this concept. Whether we may say "we do not have it" depends
     // entirely on the category: activities holds 132 deals and every one of them is a known
     // escape room, karting session or city tour, so paintball is provably not among them.
     // Dining holds 100 generic tasting menus, so "Madrid has no sushi" would be a guess — and
@@ -585,7 +585,7 @@
     return it ? it.label : deal.title;
   }
 
-  // "helicopter flights" reads right for the six nobody stocks; "paintball deals" does not.
+  // "helicopter flights" reads right for the six no catalog holds; "paintball deals" does not.
   function askedFor(q, market, city) {
     var n = { city: 0, market: 0 }, k;
     for (k in D.log) {
@@ -632,7 +632,7 @@
     return out;
   }
 
-  /* --- the whole catalogue at once -------------------------------------------------
+  /* --- the whole catalog at once -------------------------------------------------
      A scope a customer never sees: it answers "does this exist anywhere?" in one step,
      which is the fastest way to check the claim that nine concepts are stocked nowhere. */
 
@@ -653,7 +653,7 @@
       say("NOT UNDERSTOOD", step.empty
         ? "Nothing typed yet."
         : "Nothing in any of the " + D.deals.length + " deals matches “" + String(raw).trim() +
-          "”. Here is what the catalogue does hold.");
+          "”. Here is what the catalog does hold.");
       return finishAll(out);
     }
     out.intentLabel = step.intent.label;
@@ -666,9 +666,9 @@
       say("NOT SOLD HERE", "No " + step.intent.phrase + " anywhere. Checked every one of the " +
         D.deals.length + " deals in all " + D.cities.length + " cities: not one of them is " +
         step.intent.label.toLowerCase() + ".");
-      say("ABOVE CEILING", "The most expensive deal in the whole catalogue is $" +
+      say("ABOVE CEILING", "The most expensive deal in the whole catalog is $" +
         D.stats.maxPrice.toFixed(2) + " (median $" + D.stats.medianPrice.toFixed(2) + ").");
-      // The city-scoped answer offers a closest thing; the catalogue-wide one has to as well,
+      // The city-scoped answer offers a closest thing; the catalog-wide one has to as well,
       // and it can say where in the twenty cities that closest thing actually lives.
       alternativeAcross(out, step.intent);
       out.notify = notify(step.intent, null, null, true);
@@ -693,7 +693,7 @@
       out.state = "not-stocked-here";
       say("NOT SOLD HERE", "Groupon does not sell " + step.intent.label.toLowerCase() +
         " anywhere. All " + out.adjacent.length + " " + out.adjacentLabel.toLowerCase() +
-        " deals in the catalogue are named, different things.");
+        " deals in the catalog are named, different things.");
       if (out.adjacent.length) {
         var key = D.conceptOf[out.adjacent[0].id];
         var same = out.adjacent.filter(function (d) { return D.conceptOf[d.id] === key; });
@@ -705,7 +705,7 @@
       }
     } else if (out.exact.length === 0) {
       out.state = "category-only";
-      say("CATEGORY ONLY", "No deal in the whole catalogue is named “" + step.matchedTerm + "”. " +
+      say("CATEGORY ONLY", "No deal in the whole catalog is named “" + step.matchedTerm + "”. " +
         out.adjacent.length + " " + out.adjacentLabel.toLowerCase() +
         " deals, shown as " + out.adjacentLabel.toLowerCase() + ".");
     } else {
@@ -719,7 +719,7 @@
     return finishAll(out);
   }
 
-  // The nearest real concept, ranked across the whole catalogue, plus where it exists.
+  // The nearest real concept, ranked across the whole catalog, plus where it exists.
   function alternativeAcross(out, intent) {
     var adj = intent.adjacent ? D.byIntent[intent.adjacent] : null;
     if (!adj || !adj.cat) return;
@@ -741,7 +741,7 @@
     out.secondary = out.lines.slice(1);
     out.results = out.exact.concat(out.adjacent);
     out.count = out.results.length;
-    if (out.count > D.deals.length) throw new Error("catalogue cap violated: " + out.count);
+    if (out.count > D.deals.length) throw new Error("catalog cap violated: " + out.count);
     return out;
   }
 
@@ -801,11 +801,11 @@
 
   var FINDINGS = {
     F1: { id: "F1", name: "The dead zone", stat: "2,087 searches returned 1–2 results and converted at 1.7%, against 17.8% in the 4–25 band." },
-    F2: { id: "F2", name: "Blind to stock", stat: "The number of results has no relationship to matching inventory (r = +0.02)." },
+    F2: { id: "F2", name: "Blind to the catalog", stat: "The number of results has no relationship to the matching catalog (r = +0.02)." },
     F3: { id: "F3", name: "Unstable results", stat: "Of 411 query-city pairs with ≥8 searches, 0 of the 337 that ever return anything are stable." },
     F4: { id: "F4", name: "Wrong language", stat: "347 foreign-language searches produced 2 purchases — 0.58%, against 10.58% for local-language searches." },
-    F5: { id: "F5", name: "Vocabulary gap", stat: "The catalogue carries 75 distinct titles across 568 deals, and names none of the things customers actually type." },
-    F6: { id: "F6", name: "Nothing to sell", stat: "1,512 searches for six experiences nobody stocks — 0 clicks, 0 purchases, 57% of every zero-result search." },
+    F5: { id: "F5", name: "Vocabulary gap", stat: "The catalog carries 75 distinct titles across 568 deals, and names none of the things customers actually type." },
+    F6: { id: "F6", name: "Nothing to sell", stat: "1,512 searches for six experiences no catalog holds — 0 clicks, 0 purchases, 57% of every zero-result search." },
     F7: { id: "F7", name: "Impossible counts", stat: "585 searches (6.5%) returned more results than the city holds deals in total." },
     F8: { id: "F8", name: "Overload", stat: "471 searches returned 26–40 results and converted at 2.3% — worse than showing four." },
     F10: { id: "F10", name: "Misspellings", stat: "581 misspelled searches convert at 4.65%; in the healthy band a typo drops conversion 18.2% → 11.5%." }
@@ -833,7 +833,7 @@
   // What the right-hand pane changed about the left-hand one, in one sentence, from the
   // real numbers rather than a canned string.
   function whatChanged(t, p) {
-    var where = p.city || "the catalogue";
+    var where = p.city || "the catalog";
     var was = t.logged
       ? (t.stable ? t.min + (t.min === 1 ? " result" : " results") + " every time"
                   : "anywhere from " + t.min + " to " + t.max + " results")
@@ -846,10 +846,10 @@
                (p.adjacentLabel || "").toLowerCase() + " deal in " + where + " is a known, different thing.";
       case "not-in-city":
         return "Was " + was + " from the same category, with no way to tell they were not the thing " +
-               "asked for. Now they are labelled as the category they are" +
+               "asked for. Now they are labeled as the category they are" +
                (p.nearest ? ", and the " + p.nearest.total + " the market does hold are named" : "") + ".";
       case "category-only":
-        return "Was " + was + ", passed off as a match. Now " + p.count + ", labelled as " +
+        return "Was " + was + ", passed off as a match. Now " + p.count + ", labeled as " +
                (p.adjacentLabel || "").toLowerCase() + " rather than as " + p.step.matchedTerm + ".";
       case "thin":
         return "Was " + was + ". Now " + p.count + " — which is all " + where + " has, said out loud.";
@@ -863,7 +863,7 @@
           p.cityTotal + " deals " + where + " holds");
         if (t.logged && !t.stable) extra.push("the answer is the same on every run");
         return "Was " + was + ". Now " + p.count +
-               (extra.length ? " — " + extra.join(", ") + "." : ", counted from the catalogue itself.");
+               (extra.length ? " — " + extra.join(", ") + "." : ", counted from the catalog itself.");
     }
   }
 

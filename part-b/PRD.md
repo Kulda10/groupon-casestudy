@@ -2,7 +2,7 @@
 
 Status: draft v1, 2026-08-30. Written to be handed to Claude Code as the single build brief.
 Owner: Ondřej Kulatka. Companion docs in this folder: `CLAUDE.md` (start here), `FINDINGS_TO_BEHAVIOUR.md` (why each
-behaviour exists), `TESTING.md` (how to know it works). One level up: `../DEEP_DIVE_PART_A.md`
+behavior exists), `TESTING.md` (how to know it works). One level up: `../DEEP_DIVE_PART_A.md`
 (the findings in full) and `../01_explore_output.txt` / `../02_findings_output.txt` /
 `../03_validate_output.txt` (the numbers). Project rules: `../../CLAUDE.md`.
 
@@ -14,10 +14,10 @@ Every number in this document was recomputed against `search_log.csv` and `deals
 ## 0. One paragraph
 
 A single-screen prototype that looks like a Groupon search result page, runs entirely in the
-browser against the real 568-deal catalogue and the real 8,997-row search log, and answers **any**
+browser against the real 568-deal catalog and the real 8,997-row search log, and answers **any**
 query the reviewer types. Every answer is rendered twice, side by side: **Today** (what the log
 actually returned for that query in that city) and **Proposed** (what a search that reads intent,
-checks real city inventory and tells the truth would return). Under each pair, one line naming
+checks real city catalog and tells the truth would return). Under each pair, one line naming
 which Part A finding this query exercises and what the change addresses.
 
 The thing being demonstrated is not a better ranking algorithm. It is **honesty**: a search that
@@ -29,9 +29,9 @@ plainly when the platform simply does not sell what was asked for.
 ## 1. Why this, and not something else
 
 Part A's ICE ranking put six findings on top — vocabulary gap (432), impossible result counts
-(420), retrieval ignoring stock (400), foreign-language conversion (378), instability (360),
+(420), retrieval ignoring the catalog (400), foreign-language conversion (378), instability (360),
 overload (360). All six are solved by one build: **search that reads intent, checks real city
-inventory, and tells the truth about what it found.**
+catalog, and tells the truth about what it found.**
 
 The seventh, missing high-ticket supply (finding 06 — highest raw impact, Ease 2), is explicitly
 **not** solvable by this prototype. That is a feature of the submission, not a gap: the brief says
@@ -47,7 +47,7 @@ Archetype 3 below is where the prototype refuses to pretend.
 1. Handle every kind of query found in Part A — the ten archetypes in §3, no dead ends.
 2. Make the before/after difference legible in under five seconds, without stacked explanatory text.
 3. Ground every claim in the real CSVs, so a reviewer typing an unlisted query still gets a truthful answer.
-4. Name the finding behind each behaviour, so the prototype reads as a consequence of Part A rather than a search UI bolted on beside it.
+4. Name the finding behind each behavior, so the prototype reads as a consequence of Part A rather than a search UI bolted on beside it.
 5. Be honest about its own limits, in the UI, at the same size as the features.
 
 **Non-goals**
@@ -66,20 +66,20 @@ This is the structure of the prototype. Findings hang off archetypes as explanat
 other way round. The brief asks the prototype to handle *every kind of query* — that is a
 statement about queries.
 
-The four segments already labelled in `searches_classified.csv` (core 6,557 / no-inventory 1,512 /
+The four segments already labeled in `searches_classified.csv` (core 6,557 / no-catalog 1,512 /
 misspelling 581 / foreign-language 347) supply four of these; the remaining six are failure modes
 of the retrieval layer that cut across segments.
 
 | # | Archetype | Exemplar (real, from the log) | Today (from the log) | Proposed | Fixable by search? | Findings |
 |---|---|---|---|---|---|---|
-| 1 | **Healthy core query, real matching stock** | `back massage` · Manchester | 22 searches, returned 0–38 results | 5 real massage deals in Manchester, count fixed | Yes | F1, F2, F3 |
-| 2 | **Thin real inventory** | `manicure` · Kraków | 6 searches, returned 2, 6, 12, 14, 22, 27 — city holds 10 deals total | 1 genuine match, stated as one, plus the adjacent beauty deal named as adjacent | Yes | F1, F7 |
-| 3 | **No inventory at all, high ticket** | `helicopter tour` · London | 46 searches, returned 0 every time, 0 clicks, 0 purchases | Says Groupon does not sell this in London; offers the nearest real intent and a demand signal | **No** | F6 |
-| 4 | **Foreign-language query** | `deep tissue massage` · Berlin | 8 searches, returned 0–19, **0 clicks, 0 purchases** — while 9 German-titled massage deals sit in Berlin | Resolves EN intent → DE catalogue, returns all 9, states the translation it made | Yes | F4 |
+| 1 | **Healthy core query, a real matching catalog** | `back massage` · Manchester | 22 searches, returned 0–38 results | 5 real massage deals in Manchester, count fixed | Yes | F1, F2, F3 |
+| 2 | **Thin real catalog** | `manicure` · Kraków | 6 searches, returned 2, 6, 12, 14, 22, 27 — city holds 10 deals total | 1 genuine match, stated as one, plus the adjacent beauty deal named as adjacent | Yes | F1, F7 |
+| 3 | **No catalog at all, high ticket** | `helicopter tour` · London | 46 searches, returned 0 every time, 0 clicks, 0 purchases | Says Groupon does not sell this in London; offers the nearest real intent and a demand signal | **No** | F6 |
+| 4 | **Foreign-language query** | `deep tissue massage` · Berlin | 8 searches, returned 0–19, **0 clicks, 0 purchases** — while 9 German-titled massage deals sit in Berlin | Resolves EN intent → DE catalog, returns all 9, states the translation it made | Yes | F4 |
 | 5 | **Misspelling** | `susshi` · London | 2 searches, returned 0 and 2 | Corrects to `sushi`, states the correction, then falls through to archetype 6 | Yes | F10 |
-| 6 | **Customer vocabulary ≠ catalogue vocabulary** | `sushi` · Madrid | 44 searches, returned 0–38, 3 purchases — **Madrid holds zero sushi deals**; the 7 "matches" are generic dining packages (`Cena con Maridaje`, `Menú de 3 Platos`) | Says no deal in Madrid names sushi; offers the 7 dining deals labelled as category-level, not as sushi | Partly | F5, F9, F11 |
+| 6 | **Customer vocabulary ≠ catalog vocabulary** | `sushi` · Madrid | 44 searches, returned 0–38, 3 purchases — **Madrid holds zero sushi deals**; the 7 "matches" are generic dining packages (`Cena con Maridaje`, `Menú de 3 Platos`) | Says no deal in Madrid names sushi; offers the 7 dining deals labeled as category-level, not as sushi | Partly | F5, F9, F11 |
 | 7 | **Overload** | `brunch` · London | 40 searches, returned up to 38 in one draw | Caps at genuine matches (13 dining deals), groups the rest behind one line | Yes | F8 |
-| 8 | **Impossible result count** | `gym` · Manchester | 27 searches, returned up to **35** — Manchester's whole catalogue is 19 deals, of which 3 are fitness | Returns 3. The count can never exceed what the city holds | Yes | F7 |
+| 8 | **Impossible result count** | `gym` · Manchester | 27 searches, returned up to **35** — Manchester's whole catalog is 19 deals, of which 3 are fitness | Returns 3. The count can never exceed what the city holds | Yes | F7 |
 | 9 | **Instability** | `paintball` · London, run twice | 54 searches returned everything from 0 to 29 | Same query, same city → identical answer, every time. Shown as a "run it again" control | Yes | F3 |
 | 10 | **Unparseable / empty** | `asdfgh`, empty submit | Not in the log | Says it could not read an intent; offers the city's five largest real categories | n/a | — |
 
@@ -91,11 +91,11 @@ is "we cannot fix this with search."
 
 ## 4. Product principles
 
-1. **Never return more than exists.** The result count is a fact about the city's catalogue, not a number the UI produces. This alone kills findings 7 and 2.
+1. **Never return more than exists.** The result count is a fact about the city's catalog, not a number the UI produces. This alone kills findings 7 and 2.
 2. **Never return nothing when something related exists.** Falling back is fine. Falling back silently is not.
 3. **Name the move.** Every answer opens with one line stating what the system just did: *translated*, *corrected*, *matched by category*, *nothing here*. No result appears without its provenance.
 4. **Refusal is a feature.** Archetype 3 must look deliberate and finished, not like an error state.
-5. **The difference is the product.** Today and Proposed are always both visible. The prototype's argument dies the moment the reviewer has to remember what the old behaviour looked like.
+5. **The difference is the product.** Today and Proposed are always both visible. The prototype's argument dies the moment the reviewer has to remember what the old behavior looked like.
 
 ---
 
@@ -111,7 +111,7 @@ A browser-window frame (rounded, hairline border, no shadow — the case-study p
 shadows) containing a Groupon-style header. Inside the frame:
 
 - Groupon wordmark (reuse the base64 PNG in `v2/build/_logo.txt`).
-- Search field, centred, pill-shaped, **2px green outline when focused** (`--green #007D25`), clear (×) button, round green submit button with a magnifier — matching the screenshot Ondřej supplied.
+- Search field, centered, pill-shaped, **2px green outline when focused** (`--green #007D25`), clear (×) button, round green submit button with a magnifier — matching the screenshot Ondřej supplied.
 - Market + city selector to the right of the search field, rendered as a location pill: `📍 Berlin, Germany · Change`. Opens a panel listing all five markets and their cities, read from `deals.csv`. Each city shows its real deal count, e.g. `Kraków · 10 deals` — the number is itself a Part A finding on display.
 
 The frame is **not** a browser chrome imitation with fake URL bars and tab strips. One thin top
@@ -120,7 +120,7 @@ bar, the Groupon header, done. It reads as "a product screen", not as a joke abo
 ### 5.2 Query chip rail
 
 Directly under the search field: a horizontally scrolling rail of ten chips, one per archetype,
-each labelled with the archetype name and preloading its exemplar query **and** its city.
+each labeled with the archetype name and preloading its exemplar query **and** its city.
 This is how the reviewer sees all ten states in twenty seconds without guessing what to type.
 Chips are secondary styling (outline, `--line`), the active one green-filled.
 
@@ -131,7 +131,7 @@ Two columns, equal width, on one row.
 | | Left — **Today** | Right — **Proposed** |
 |---|---|---|
 | Header | `TODAY` label, mono, `--ink3` | `PROPOSED` label, mono, white on `--green` |
-| Chrome | Card on `--bg`, `--line` border, contents at 70% opacity, greyscale images/badges | Card on `--card` white, `--green` 1.5px border, full colour |
+| Chrome | Card on `--bg`, `--line` border, contents at 70% opacity, greyscale images/badges | Card on `--card` white, `--green` 1.5px border, full color |
 | Content | The result count the log actually returned, then generic placeholder rows | Real deal cards from `deals.csv` |
 
 **The left pane is not a simulation.** For any query+city present in the log it replays the real
@@ -140,15 +140,15 @@ This run: 14."* with a "run again" control that redraws from the logged values. 
 interaction demonstrates finding 03 more convincingly than any chart — and it is honest, because
 the numbers come from the log rather than from us. For a query not in the log, the left pane says
 so and draws from the same band distribution the generator uses (0 / 1–2 / 4–25 / 26–40, no 3),
-labelled as a reconstruction.
+labeled as a reconstruction.
 
 Mobile (<820px): stack, Proposed first, Today collapsed behind a `Show what happens today` toggle.
 
 ### 5.4 Result card (Proposed pane)
 
-Title (local language, verbatim from the catalogue) · category · price · rating · instant-booking
+Title (local language, verbatim from the catalog) · category · price · rating · instant-booking
 badge. Price in Groupon's green, at Groupon's weight — but **no struck-through anchor price and no
-discount pill**: the catalogue carries no original price, and inventing one would be the exact
+discount pill**: the catalog carries no original price, and inventing one would be the exact
 dishonesty this prototype argues against. Rating as a star + number. No images — there are none in the data, and inventing them would be
 the exact dishonesty this prototype argues against. A neutral category glyph instead.
 
@@ -173,7 +173,7 @@ decision, not a copy tweak.
 Below the panes, one full-width bar, collapsed by default to a single line:
 
 `FINDING F4 · Wrong language` — *266 foreign-language searches produced 2 purchases.*
-Expand → two short paragraphs: what the finding is, what this behaviour changes, and a link to
+Expand → two short paragraphs: what the finding is, what this behavior changes, and a link to
 the same finding in Part A of the case-study page.
 
 Never overlays the results. Never appears inside a pane. This is the rule Ondřej set: explanation
@@ -204,10 +204,10 @@ Resolution order, first match wins:
 2. **Exact intent term** → intent. Record the language the term belongs to.
 3. **Fuzzy** — Levenshtein ≤2 against every intent term, shortest distance wins → `CORRECTED`.
 4. **Foreign detection** — if the matched term is not native to the market (the v1 rule: asked 20+ times in this market, or ≥20% of the term's total volume), flag `TRANSLATED` and name both languages.
-5. **Retrieve** — all deals in the selected city whose `category_l2` maps to the intent. Title-level match if the intent has a literal catalogue term; otherwise category-level, and say so (`CATEGORY ONLY`).
-6. **No inventory** — intent resolved but the city holds zero matching deals. Two different cases, and they must not be collapsed:
-   - **The concept exists elsewhere in the market** (thin local stock): `NOT SOLD HERE` plus the nearest city in the same market that holds it. "Nearest" means same market — there are no coordinates.
-   - **The concept exists nowhere in the catalogue** — the six high-ticket ones. There is no nearest city; verified across all 568 deals. Say so explicitly, add the price-ceiling note, offer at most **one** hand-mapped adjacent deal labelled *"a different experience, not a replacement"* (`supercar track day` → Go-Karting; `helicopter tour` / `hot air balloon ride` → Guided City Tour; `skydiving`, `rafting`, `shark diving` → nothing, show nothing), and surface the demand signal with its real number. Mark the whole state as an unvalidated proposal — the data cannot say whether any of it converts. Full reasoning in `FINDINGS_TO_BEHAVIOUR.md`.
+5. **Retrieve** — all deals in the selected city whose `category_l2` maps to the intent. Title-level match if the intent has a literal catalog term; otherwise category-level, and say so (`CATEGORY ONLY`).
+6. **No catalog** — intent resolved but the city holds zero matching deals. Two different cases, and they must not be collapsed:
+   - **The concept exists elsewhere in the market** (a thin local catalog): `NOT SOLD HERE` plus the nearest city in the same market that holds it. "Nearest" means same market — there are no coordinates.
+   - **The concept exists nowhere in the catalog** — the six high-ticket ones. There is no nearest city; verified across all 568 deals. Say so explicitly, add the price-ceiling note, offer at most **one** hand-mapped adjacent deal labeled *"a different experience, not a replacement"* (`supercar track day` → Go-Karting; `helicopter tour` / `hot air balloon ride` → Guided City Tour; `skydiving`, `rafting`, `shark diving` → nothing, show nothing), and surface the demand signal with its real number. Mark the whole state as an unvalidated proposal — the data cannot say whether any of it converts. Full reasoning in `FINDINGS_TO_BEHAVIOUR.md`.
 7. **Unresolved** → `NOT UNDERSTOOD`.
 
 Hard invariants, assert them in code:
@@ -225,7 +225,7 @@ it — no backend, no API key (the brief asks that any key be named; there is no
 
 - `deals[]` — all 568 rows, array-of-arrays to keep it small: `[deal_id, market, city, title, category_l1, category_l2, price_usd, rating, num_ratings, is_bookable]`.
 - `cities[]` — market, city, deal count, per-category counts.
-- `intents[]` — concept, catalogue category (or `null` for the six with no inventory), display label, terms across all five languages.
+- `intents[]` — concept, catalog category (or `null` for the six with no catalog), display label, terms across all five languages.
 - `log{}` — for each `(market|city|query)` seen in the log: number of searches, and the list of `results_shown` values. This is what the Today pane replays. 1,322 distinct keys; store as compact arrays.
 
 Target bundle size under 250KB uncompressed. The v1 bundle was 106KB with fewer log keys, so this
@@ -263,8 +263,8 @@ State this in the UI, in a fixed footer strip inside the frame — not in a moda
 - **No `user_id` or session.** No personalisation, no journey, no "customers who searched this also…".
 - **No ranking data.** Nothing in the log records what order results appeared in, so the Proposed pane's ordering is a defensible choice, not a reproduction.
 - **No coordinates.** "Nearest city" uses market membership, not distance.
-- **Prices are labelled USD across five non-US markets.** Shown as given; not converted.
-- **The catalogue is 75 distinct titles across 568 deals.** Many "matches" are necessarily category-level. The prototype says so rather than hiding it.
+- **Prices are labeled USD across five non-US markets.** Shown as given; not converted.
+- **The catalog is 75 distinct titles across 568 deals.** Many "matches" are necessarily category-level. The prototype says so rather than hiding it.
 
 ---
 

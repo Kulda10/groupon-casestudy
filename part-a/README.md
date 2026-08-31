@@ -20,7 +20,7 @@ Requires `pandas`, `numpy`, `scipy` and `statsmodels`.
 ## 01_explore.py — what the data is
 
 No claims, no mapping, no interpretation. It profiles both files so anyone can see
-the raw shape before any judgement of mine is applied.
+the raw shape before any judgment of mine is applied.
 
 - Column-by-column profile of both files: types, nulls, cardinality, an example value
 - Fourteen integrity checks (duplicate ids, purchases without clicks, cities present
@@ -30,7 +30,7 @@ the raw shape before any judgement of mine is applied.
 - **The result counts, as a full ASCII histogram.** This is where the shape of the
   data becomes visible without anyone arguing about it
 - The funnel for the whole month, by market and by weekday
-- The catalogue: category structure, all 75 distinct titles, prices, ratings, bookability
+- The catalog: category structure, all 75 distinct titles, prices, ratings, bookability
 - A closing section listing **what these files do not contain** — this bounds every
   conclusion drawn in step 2
 
@@ -40,9 +40,9 @@ the counts are flat.
 
 ## 02_findings.py — what appears to be broken
 
-Where interpretation starts, and it starts with a judgement stated out loud: nothing
+Where interpretation starts, and it starts with a judgment stated out loud: nothing
 in the data says whether a result was *correct*. So this script builds a
-query → intent → inventory map by hand, prints it in full, and derives the fifteen
+query → intent → catalog map by hand, prints it in full, and derives the fifteen
 findings from it. Every line of that map can be disputed.
 
 Prints every figure quoted in Part A, plus the three claims the data invites you to
@@ -55,7 +55,7 @@ your own decisions. It recomputes every claim in step 2 by a different route and
 to break it:
 
 - The core correlation under **three independent definitions** of "a matching deal",
-  including the catalogue's own category field and no mapping at all
+  including the catalog's own category field and no mapping at all
 - Forensics on the data generator, to test whether a finding is a real signal or an
   artefact of how the file was produced
 - Better tests against the differences step 2 dismissed as noise, in case they were
