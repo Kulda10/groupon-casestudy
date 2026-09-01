@@ -1551,13 +1551,14 @@ tr.frow[aria-expanded=true] .icebtn b{color:var(--green)}
   <div style="overflow-x:auto;margin-top:24px"><table style="min-width:460px">
     <tr><th style="width:32%">What I chose not to build</th><th>Why not</th></tr>
     <tr><td><b>An LLM over the catalog</b></td>
-      <td>The problem is that the count doesn’t match the catalog; a language model only makes the
-      same wrong answer fluent. It also re-creates finding 03 &mdash; answering differently every
-      time is exactly what a probabilistic layer does. Deterministic first.</td></tr>
+      <td>Not never &mdash; not first. The count doesn’t match the catalog, and a language model
+      over a broken count only makes the same wrong answer fluent. It also re-creates finding 03:
+      answering differently every time is what a probabilistic layer does by design. Fix the
+      retrieval first &mdash; see <i>AI-driven personalization</i>, below.</td></tr>
     <tr><td><b>A &ldquo;similar deals&rdquo; rail on the empty state</b></td>
       <td>What the live site does today: an unlabeled grid the customer is invited to read as
       relevant. Same defect as everything above, wearing a helpful face.</td></tr>
-    <tr><td><b>Personalisation and recommendations</b></td>
+    <tr><td><b>Personalization and recommendations</b></td>
       <td>No <code>user_id</code> and no session in the data. Building it would mean inventing the
       signal it runs on.</td></tr>
     <tr><td><b>A learned ranking model</b></td>
@@ -1565,6 +1566,15 @@ tr.frow[aria-expanded=true] .icebtn b{color:var(--green)}
       is not there: inside the band, 4&ndash;9 results convert at 19.8% and 20&ndash;25 at 16.9%.
       Landing in the band beats ordering within it.</td></tr>
   </table></div>
+  <p class="sub" style="margin-top:22px"><b>AI-driven personalization.</b> The model is not the
+  hard part &mdash; <b>the data underneath it is.</b> What someone bought before, what they
+  searched, what the merchant knows: none of it is in this file, which is the same gap that rules
+  out personalization above. With it, this stops being a prompt and becomes <b>a model fine-tuned
+  on our own customers.</b> It brings its own weight &mdash; evals and safety checks, a
+  customer-context store to serve it from, the AI-ops to keep it honest in production. Which is why
+  it is <b>layers, not either/or</b>: deterministic retrieval is the floor that makes the count
+  true, and the model sits on top of it once there is something to learn from and a way to prove it
+  helps.</p>
 </div></section>
 
 <section style="padding:44px 0"><div class="wrap narrow">
